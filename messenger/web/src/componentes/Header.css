@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 20px;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header__center {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.header__center h3 {
+  margin-left: 10px;
+}
