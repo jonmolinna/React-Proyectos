@@ -1,0 +1,19 @@
+:root {
+  --primary-color: #262d31;
+  --secondary-color: #131c21;
+  --tercer-color: #056162;
+  --text-color: #f4f4f4;
+  --border-color: #3f4448;
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
