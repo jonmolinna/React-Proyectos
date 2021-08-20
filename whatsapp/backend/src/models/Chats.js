@@ -7,4 +7,4 @@ const chatSchema = mongoose.Schema({
     idGrupo: String
 });
 
-export default mongoose.model('Chat', chatSchema);
+export default mongoose.model('chat', chatSchema);
