@@ -1,0 +1,5 @@
+npm install express
+npm install mongoose
+npm install pusher => es semejante socket.io
+npm install cors
+npm install nodemon -D
