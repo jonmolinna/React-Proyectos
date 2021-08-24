@@ -4,15 +4,26 @@ import Login from './componentes/Login';
 import Message from './componentes/Message';
 
 function App() {
-  const [name, setName] = useState('Jon Dalla');
+  const [username, setUsername] = useState('');
+
+  const handleUser = (name) => {
+    setUsername(name);
+  }
+
+  const handleLogout = () => {
+    setUsername('')
+  }
 
   return (
     <div className="app">
       {
-        !name? (
-          <Login />
+        !username? (
+          <Login handleUser={handleUser} />
         ) : (
-          <Message />
+          <Message 
+            handleLogout={handleLogout}
+            username={username}
+          />
         )
       }
     </div>
