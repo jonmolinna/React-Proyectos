@@ -3,8 +3,8 @@
   flex-direction: row;
   padding: 10px 20px;
   align-items: center;
-  background-color: var(--secondary-color);
-  border-bottom: 1px solid var(--border-color);
+  background-color: var(--primary-color);
+  border-bottom: 2px solid var(--border-color);
 }
 
 .header__center {

@@ -1,14 +1,19 @@
 import React from 'react';
 import './ChatMessage.css';
 
-const ChatMessage = () => {
+const ChatMessage = ({ message, username }) => {
+    let isUsername = username === message.username;
+    let segundos = Number(message.timestamp);
+    let fecha = new Date(segundos).toLocaleDateString();
+    let hora = new Date(segundos).toLocaleTimeString();
+
     return (
-        <p className="chat__message chat__reciever">
-            <span className="chat__name">Jon Dallas</span>
-            Este es mi Mensaje
-            <span className="chat__timestamp">12/11/2021</span>
+        <p className={`chat__message ${isUsername && 'chat__reciever' }`}>
+            <span className="chat__name">{isUsername? '' : message.username}</span>
+            {message.message}
+            <span className="chat__timestamp">{fecha} {hora}</span>
         </p>
     )
-}
+};
 
 export default ChatMessage;
