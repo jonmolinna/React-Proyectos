@@ -4,13 +4,13 @@
   padding: 10px;
   width: fit-content;
   border-radius: 10px;
-  background-color: #37474f;
+  background-color: #616161;
   margin-bottom: 30px;
 }
 
 .chat__reciever {
   margin-left: auto;
-  background-color: var(--cuarto-color);
+  background-color: #aa00ff;
 }
 
 .chat__name {

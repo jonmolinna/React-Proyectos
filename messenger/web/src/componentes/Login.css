@@ -5,7 +5,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-color);
+  background: #000000;
+  background: -webkit-linear-gradient(to bottom, #434343, #000000);
+  background: linear-gradient(to bottom, #434343, #000000);
 }
 
 .login__form {
@@ -22,8 +24,8 @@
   font-weight: 700;
   margin-bottom: 10px;
   font-size: 1rem;
-  background-color: var(--secondary-color);
-  color: aliceblue;
+  background-color: aliceblue;
+  color: #000;
 }
 
 .login__form button {

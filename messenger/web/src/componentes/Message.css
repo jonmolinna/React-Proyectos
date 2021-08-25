@@ -9,9 +9,10 @@
 
 .message__chat {
   flex: 1;
-  background-image: url("https://res.cloudinary.com/dhdxq3mkm/image/upload/v1629728191/whatsapp-project/fondo_messenger_dc2g8k.jpg");
-  background-position: bottom;
-  object-fit: contain;
+  /******/
+  background: #283048;
+  background: -webkit-linear-gradient(to top, #859398, #283048);
+  background: linear-gradient(to top, #859398, #283048);
 }
 
 .message__chat {
