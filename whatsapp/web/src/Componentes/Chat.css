@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100vh;
 }
 
 .chat__header {
@@ -23,7 +24,7 @@
   font-weight: 500;
 }
 
-.chat__headerInfo > p {
+.chat__headerInfo > small {
   color: gray;
 }
 
@@ -50,7 +51,6 @@
   -ms-overflow-style: none; /*IE and Edge*/
   scrollbar-width: none; /*Firefox*/
 }
-
 
 .chat__footer {
   display: flex;

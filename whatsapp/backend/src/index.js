@@ -23,25 +23,8 @@ app.use(express.json());
 app.use(cors());
 
 // db config
-//const URI= 'mongodb+srv://admin:t4JdUPwVvDltrBst@cluster0.xtqx7.mongodb.net/whatsappReactDB?retryWrites=true&w=majority';
-const URI = 'mongodb://localhost/whatsapp_project';
-/*
-const connectDB = async () => {
-    try {
-        await mongoose.connect(URI, {
-            useNewUrlParser: true, 
-            useUnifiedTopology: true,
-        });
-        console.log('MongoDB Conectado');
-    } catch (err) {
-        console.log('Error al Conectarse al MongoDB', err);
-        //process.exit(1)
-    }
-}
-
-connectDB();
-*/
-
+const URI= 'mongodb+srv://admin:t4JdUPwVvDltrBst@cluster0.xtqx7.mongodb.net/whatsappReactDB?retryWrites=true&w=majority';
+//const URI = 'mongodb://localhost/whatsapp_project';
 
 mongoose.connect(URI, {
     useNewUrlParser: true,
@@ -55,7 +38,6 @@ const db = mongoose.connection;
 db.once("open", () => {
     console.log('DB Connected');
 
-    /*
     const chatCollection = db.collection('chat');
     const changeStream = chatCollection.watch();
 
@@ -75,7 +57,7 @@ db.once("open", () => {
             console.log('Error triggerring Pusher')
         }
     })
-    */
+
 });
 
 // app routes

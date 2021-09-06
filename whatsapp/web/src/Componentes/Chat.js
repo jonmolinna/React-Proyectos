@@ -6,8 +6,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import MicIcon from '@material-ui/icons/Mic';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ChatMessage from './ChatMessage';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 const Chat = ({ user, messages, sendMensage, grupos }) => {
     const [mensage, setMensage] = useState('');
@@ -27,13 +28,16 @@ const Chat = ({ user, messages, sendMensage, grupos }) => {
         setMensage('');
     }
 
+    let history = useHistory();
+
     return (
         <div className="chat">
             <div className="chat__header">
+                <ArrowBackIcon onClick={() => history.push("/")} />
                 <Avatar src={grupo.imagen} />
                 <div className="chat__headerInfo">
                     <h3>{grupo.name}</h3>
-                    <p>Ult. mensaje {fecha} {hora}</p>
+                    <small>Ult. mensaje {fecha} {hora}</small>
                 </div>
                 <div className="chat__headerRight">
                     <IconButton>

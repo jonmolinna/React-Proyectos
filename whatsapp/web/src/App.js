@@ -6,9 +6,9 @@ import Sidebar from './Componentes/Sidebar';
 import { TYPES } from './reducers/actions/userActions';
 import { userInitialState, userReducer } from './reducers/userReducer';
 import axios from './helpers/axios';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import ChatInicio from './Componentes/ChatInicio';
-//import Pusher from 'pusher-js';
+import Pusher from 'pusher-js';
 
 function App() {
   const [state, dispatch] = useReducer(userReducer, userInitialState);
@@ -57,20 +57,24 @@ function App() {
         });
       })
   };
-
-  /*** PUSHER 
+ 
   useEffect(() => {
     const pusher = new Pusher('33bd7f1aa81d481acfaf', {
       cluster: 'us2'
     });
 
-    const chanel = pusher.subscribe('messages');
-    chanel.bind('inserted', (newMessage) => {
-      alert(JSON.stringify(newMessage));
-
+    const channel = pusher.subscribe('messages');
+    channel.bind('inserted', (newMessage) => {
+      console.log('>>>>Data', newMessage);
+      console.log('Haolllaaa')
     });
 
-  }, []); */
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    }
+
+  }, [mensage]);
 
   return (
     <div className="app">
@@ -78,67 +82,35 @@ function App() {
         !user? (
           <Login handleLogin={handleLogin} />
         ): (
-          <Router>  
-            <div className="app__body">
+          <Router>
+            <div className="app__movil">
+              <Route exact path="/">
+                <Sidebar grupos={grupos} mensage={mensage} />
+              </Route>
+              <Route exact path="/grupo/:id">
+                  <Chat user={user} messages={mensage} sendMensage={sendMensage} grupos={grupos} />
+                </Route> 
+            </div>
+
+            <div className="app__desktop">
               <aside className="app__sidebar">
                 <Sidebar grupos={grupos} mensage={mensage} />
               </aside>
-
               <aside className="app__chat">
-                <Switch>
-                  <Route exact path="/grupo/:id">
-                    <Chat user={user} messages={mensage} sendMensage={sendMensage} grupos={grupos} />
-                  </Route>
-                  <Route exact path="/">
-                    <ChatInicio user={user} />
-                  </Route>
-                </Switch>
+                <Route exact path="/grupo/:id">
+                  <Chat user={user} messages={mensage} sendMensage={sendMensage} grupos={grupos} />
+                </Route>
+                <Route exact path="/">
+                  <ChatInicio user={user} />
+                </Route>
               </aside>
+
             </div>
           </Router>
         )
       }
     </div>
-
   );
-
-
-}
+};
 
 export default App;
-
-
-/*
-return (
-    <div className="app">
-      {
-        !user? (
-          <Login handleLogin={handleLogin} />
-        ): (
-          <Router>  
-           
-            <div className="app__body">
-            
-              <aside className="app__sidebar">
-                <Sidebar grupos={grupos} mensage={mensage} />
-              </aside>
-
-              <aside className="app__chat">
-              <Switch>
-                  <Route exact path="/grupo/:id">
-                    <Chat user={user} messages={mensage} sendMensage={sendMensage} grupos={grupos} />
-                  </Route>
-                  <Route exact path="/">
-                    <ChatInicio user={user} />
-                  </Route>
-                </Switch>
-              </aside>
-              
-            </div>
-            
-          </Router>
-        )
-      }
-    </div>
-  );
-  */
