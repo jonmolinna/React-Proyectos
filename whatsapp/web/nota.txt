@@ -4,3 +4,4 @@ npm install axios
 npm install react-flip-move
 npm install react-router-dom
 npm install pusher-js
+npm install moment
