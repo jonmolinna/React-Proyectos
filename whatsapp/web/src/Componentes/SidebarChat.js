@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SidebarChat.css';
 import { Avatar } from '@material-ui/core';
+import axios from '../helpers/axios';
 import { Link } from 'react-router-dom';
 
-const SidebarChat = ({ grupo, mensage }) => {
-    mensage.sort((a, b) => Number(b.timestamp) - Number(a.timestamp) );
-    //console.log(mensage);
-    let ultimoMessage = mensage.filter(element => element.idGrupo === grupo._id)[0]
+/// >>>> PUSHER
+
+const SidebarChat = ({ chat }) => {
+    let { id, image, name } = chat;
+
+    const [chatInfo, setChatInfo] = useState('');
     
+    useEffect(() => {
+        axios.get(`/getLastMessageGroup?id=${id}`)
+            .then(res => {
+                setChatInfo(res.data)
+        });
+
+    }, [id]);
+
     return (
-        <Link to={`/grupo/${grupo._id}`}>
+        <Link to={`/group/${id}`}>
             <div className="sidebarChat">
-                <Avatar src={grupo.imagen} />
+                <Avatar src={image} />
                 <div className="sidebarChat__info">
-                    <h2>{grupo.name}</h2>
-                    <p>{ultimoMessage.message}</p>
+                    <h2>{ name }</h2>
+                    <p>{ chatInfo.message }</p>
                 </div>
             </div>
         </Link>

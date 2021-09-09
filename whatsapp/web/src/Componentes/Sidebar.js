@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 import { Avatar, IconButton } from '@material-ui/core';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
@@ -6,8 +6,26 @@ import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import SidebarChat from './SidebarChat';
+import axios from '../helpers/axios';
 
-const Sidebar = ({ grupos, mensage }) => {
+/// PUSHER
+
+const Sidebar = () => {
+    const [chats, setChats] = useState([]);
+
+    chats.sort((a, b) => Number(b.timestamp) - Number(a.timestamp));
+
+    const getLastChatGrupo = () => {
+        axios.get('/getLastMessageGroups')
+            .then(res => {
+                setChats(res.data)
+            })
+    };
+
+    useEffect(() => {
+        getLastChatGrupo();
+    }, []);
+
     return (
         <div className="sidebar">
             <div className="sidebar__header">
@@ -34,8 +52,8 @@ const Sidebar = ({ grupos, mensage }) => {
 
             <div className="sidebar__chats">
                 {
-                    grupos.map(grupo => (
-                        <SidebarChat key={grupo._id} grupo={grupo} mensage={mensage} />
+                    chats.map(chat => (
+                        <SidebarChat key={chat.id} chat={chat} />
                     ))
                 }
             </div>

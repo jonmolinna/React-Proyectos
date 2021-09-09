@@ -1,0 +1,19 @@
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+/*********** Media 640px ****************/
+@media screen and (min-width: 640px) {
+  .message__desktop {
+    display: flex;
+  }
+
+  .message__sidebar {
+    flex: 0.35;
+  }
+
+  .message__chat {
+    flex: 0.65;
+  }
+}

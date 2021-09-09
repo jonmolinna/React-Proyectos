@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Chat.css';
 import { Avatar, IconButton } from '@material-ui/core';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
@@ -8,36 +8,56 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 import MicIcon from '@material-ui/icons/Mic';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ChatMessage from './ChatMessage';
+import axios from '../helpers/axios';
 import { useParams, useHistory } from 'react-router-dom';
+import moment from 'moment';
 
-const Chat = ({ user, messages, sendMensage, grupos }) => {
-    const [mensage, setMensage] = useState('');
+// PUSHER
+
+const Chat = ({ userName }) => {
+    const [newMessage, setNewMessage] = useState('');
+    const [group, setGroup] = useState({});
+    const [messages, setMessages] = useState([]);
+    const [time, setTime] = useState(null)
     const { id } = useParams();
-    messages.sort((a, b) => Number(b.timestamp) - Number(a.timestamp) );
-
-    let grupoMensajes = messages.filter(element => element.idGrupo === id);
-    let grupo = grupos.filter(element => element._id === id)[0]; 
-    let ultimoMensaje = grupoMensajes[0];
-    let numero = Number(ultimoMensaje.timestamp);
-    let fecha = new Date(numero).toLocaleDateString();
-    let hora = new Date(numero).toLocaleTimeString();
-
-    const handleMensage = (e) => {
-        e.preventDefault();
-        sendMensage(mensage, id);
-        setMensage('');
-    }
-
     let history = useHistory();
+
+    messages.sort((a, b) => parseInt(b.timestamp) - parseInt(a.timestamp));   
+
+    const getMessages = (id) => {
+        if(id){
+            axios.get(`/getGroup?id=${id}`)
+                .then(res => {
+                    setGroup(res.data[0])
+                    setMessages(res.data[0].conversation)
+                    setTime(res.data[0].conversation[0].timestamp)
+                });
+        }
+    };
+
+    useEffect(() => {
+        getMessages(id);
+    }, [id]);
+
+    const addMensage = (e) => {
+        e.preventDefault();
+
+        axios.post(`/addMessage?id=${id}`, {
+            message: newMessage,
+            timestamp: Date.now(),
+            user: userName
+        });
+        setNewMessage("");
+    }
 
     return (
         <div className="chat">
             <div className="chat__header">
                 <ArrowBackIcon onClick={() => history.push("/")} />
-                <Avatar src={grupo.imagen} />
+                <Avatar src={group.imgUrl}  />
                 <div className="chat__headerInfo">
-                    <h3>{grupo.name}</h3>
-                    <small>Ult. mensaje {fecha} {hora}</small>
+                    <h3>{ group.chatName }</h3>
+                    <small>Ult. Mensaje {moment(parseInt(time)).format('lll')} </small>
                 </div>
                 <div className="chat__headerRight">
                     <IconButton>
@@ -51,8 +71,8 @@ const Chat = ({ user, messages, sendMensage, grupos }) => {
 
             <div className="chat__body">
                 {
-                    grupoMensajes.map(message => (
-                        <ChatMessage key={message._id} message={message} user={user} />
+                    messages && messages.map(message => (
+                        <ChatMessage key={message._id} message={message} userName={userName} />
                     ))
                 }
             </div>
@@ -64,12 +84,12 @@ const Chat = ({ user, messages, sendMensage, grupos }) => {
                 <IconButton>
                     <AttachFileIcon />
                 </IconButton>
-                <form onSubmit={handleMensage}>
+                <form onSubmit={addMensage}>
                     <input 
                         type="text" 
                         placeholder="Escribe un mensage aquí"
-                        value={mensage}
-                        onChange={e => setMensage(e.target.value)} 
+                        value={newMessage}
+                        onChange={e => setNewMessage(e.target.value)} 
                     />
                     <button type="submit">Enviar</button>
                 </form>
