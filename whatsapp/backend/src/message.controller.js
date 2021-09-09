@@ -34,17 +34,17 @@ export const getLastMessageGroups = (req, res) => {
         if(err){
             res.status(500).send(err)
         } else {
-            data.sort((b, a) => {
-                return a.timestamp - b.timestamp;
-            });
 
             let conversation = [];
 
             data.map(conversationData => {
+                conversationData.conversation.sort((a, b) => Number(b.timestamp) - Number(a.timestamp))
+                
                 const conversationInfo = {
                     id: conversationData._id,
                     name: conversationData.chatName,
-                    timestamp: conversationData.conversation[0].timestamp
+                    timestamp: conversationData.conversation[0].timestamp,
+                    image: conversationData.imgUrl
                 }
 
                 conversation.push(conversationInfo);

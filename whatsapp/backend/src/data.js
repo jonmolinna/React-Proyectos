@@ -7,10 +7,7 @@ const messageSchema = mongoose.Schema({
         {
             message: String,
             timestamp: String,
-            user: {
-                userName: String,
-                uid: String
-            }
+            user: String,
         }
     ]
 });
