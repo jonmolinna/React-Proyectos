@@ -7,8 +7,12 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import SidebarChat from './SidebarChat';
 import axios from '../helpers/axios';
+import Pusher from 'pusher-js';
 
 /// PUSHER
+const pusher = new Pusher('33bd7f1aa81d481acfaf', {
+    cluster: 'us2'
+});
 
 const Sidebar = () => {
     const [chats, setChats] = useState([]);
@@ -24,6 +28,12 @@ const Sidebar = () => {
 
     useEffect(() => {
         getLastChatGrupo();
+
+        const channel = pusher.subscribe('messages');
+        channel.bind('newMessage', function(data){
+            getLastChatGrupo();
+        });
+
     }, []);
 
     return (

@@ -10,6 +10,14 @@ const Message = ({ userName }) => {
     return (
         <div className="message">
             <Router>
+                <div className="message__movil">
+                    <Route exact path="/">
+                        <Sidebar />
+                    </Route>
+                    <Route exact path="/group/:id">
+                        <Chat userName={userName} />
+                    </Route>
+                </div>
 
                 <div className="message__desktop">
                     <aside className="message__sidebar">
@@ -20,7 +28,7 @@ const Message = ({ userName }) => {
                             <Chat userName={userName} />
                         </Route>
                         <Route exact path="/">
-                            <ChatInicio />
+                            <ChatInicio userName={userName} />
                         </Route>
                         
                     </aside>

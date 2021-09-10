@@ -11,8 +11,12 @@ import ChatMessage from './ChatMessage';
 import axios from '../helpers/axios';
 import { useParams, useHistory } from 'react-router-dom';
 import moment from 'moment';
+import Pusher from 'pusher-js';
 
 // PUSHER
+const pusher = new Pusher('33bd7f1aa81d481acfaf', {
+    cluster: 'us2'
+});
 
 const Chat = ({ userName }) => {
     const [newMessage, setNewMessage] = useState('');
@@ -36,7 +40,15 @@ const Chat = ({ userName }) => {
     };
 
     useEffect(() => {
+        pusher.unsubscribe('messages');
+
         getMessages(id);
+
+        const channel = pusher.subscribe('messages');
+        channel.bind('newMessage', function(data){
+            getMessages(id)
+        });
+
     }, [id]);
 
     const addMensage = (e) => {
