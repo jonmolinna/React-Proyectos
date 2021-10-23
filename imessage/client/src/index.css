@@ -1,0 +1,23 @@
+:root {
+  --bg-color: #e5e5e5;
+  --first-color: #224957;
+  --success-color: #198754;
+  --danger-color: #e74c3c;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+}
