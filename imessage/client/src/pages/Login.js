@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import axios from '../util/axios';
@@ -14,7 +14,6 @@ const initialForm = {
 
 const Login = () => {
     const [form, setForm] = useState(initialForm);
-    let history = useHistory();
     const dispatch = useAuthDispatch();
 
     const handleChange = (e) => {
@@ -38,7 +37,6 @@ const Login = () => {
             setForm(initialForm);
             let nombre = Capitalize(res.data.name);
             toast.success(`Bienvenido ${nombre}`);
-            history.push('/home')
         } catch (err) {
             if(err.response){
                 toast.error(err.response.data.error);

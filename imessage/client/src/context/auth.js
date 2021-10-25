@@ -1,18 +1,36 @@
 import React, { createContext, useReducer, useContext } from 'react';
+import jwtDecode from 'jwt-decode';
 
 const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
 
 let usuario = null;
 
+const token = localStorage.getItem('tokenImessage');
+if(token){
+    const decodedToken = jwtDecode(token)
+    const expiresAt = new Date(decodedToken.exp * 1000)
+
+    if(new Date() > expiresAt){
+        localStorage.removeItem('tokenImessage');
+    } else {
+        usuario = decodedToken;
+    }
+    // console.log('>>>>>', decodedToken);
+} else {
+    console.log('No token found')
+}
+
 const authReducer = (state, action) => {
     switch(action.type){
         case 'LOGIN':
+            localStorage.setItem('tokenImessage', action.payload.token)
             return {
                 ...state,
                 usuario: action.payload
             }
         case 'LOGOUT':
+            localStorage.removeItem('tokenImessage')
             return {
                 ...state,
                 usuario: null

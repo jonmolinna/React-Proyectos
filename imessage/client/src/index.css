@@ -1,5 +1,6 @@
 :root {
   --bg-color: #e5e5e5;
+  --bg-color-2: #f5f5f5;
   --first-color: #224957;
   --success-color: #198754;
   --danger-color: #e74c3c;
@@ -20,4 +21,7 @@ html {
 body {
   margin: 0;
   background-color: var(--bg-color);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
