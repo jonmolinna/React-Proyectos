@@ -76,3 +76,17 @@ export const loginUser = async (req, res) => {
         return res.status(500).json({ error })
     }
 };
+
+// Obteniendo los Usuarios
+// Obtener Usuarios y sus mensajes
+export const getUsersMessages = async (req, res) => {
+    let users = await User.find({}, { password: 0, updatedAt: 0, username: 0 });
+    let usuarios = users.filter(user => user._id != req.usuarioToken.id);
+
+    const allUserMessages = await Message.find({
+        
+    })
+    console.log(usuarios);
+    
+    return res.status(200).json({ usuarios })
+};
