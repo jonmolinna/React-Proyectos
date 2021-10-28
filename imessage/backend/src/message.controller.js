@@ -28,7 +28,7 @@ export const addMessaje = async (req, res) => {
 
 // Obtener Messges
 export const getMessages = async (req, res) => {
-    const { from } = req.body;
+    const { from } = req.query;
     const errors = {};
 
     try {
@@ -41,7 +41,8 @@ export const getMessages = async (req, res) => {
         const messages = await Message.find({
             from: {$in: usernames},
             to: {$in: usernames},
-        });
+        })
+        .sort({"createdAt": 'desc'});
 
         return res.status(200).json({ messages })
         

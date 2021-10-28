@@ -1,6 +1,7 @@
 import User from './User.js';
 import bcrypt  from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import Message from './Message.js';
 
 const nameRegex = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 const usernameRegex = /^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/;
@@ -11,7 +12,8 @@ function generateToken(user){
         {
             id: user._id,
             username: user.username,
-            name: user.name
+            name: user.name,
+            imagen: user.imgURL
         }, 
         "SECRET_KEY", 
         { expiresIn: '1h'}
@@ -80,13 +82,37 @@ export const loginUser = async (req, res) => {
 // Obteniendo los Usuarios
 // Obtener Usuarios y sus mensajes
 export const getUsersMessages = async (req, res) => {
-    let users = await User.find({}, { password: 0, updatedAt: 0, username: 0 });
-    let usuarios = users.filter(user => user._id != req.usuarioToken.id);
+    try {
+        let users = await User.find({}, { password: 0, updatedAt: 0 })
+        let usuarios = users.filter(user => user._id != req.usuarioToken.id);
 
-    const allUserMessages = await Message.find({
-        
-    })
-    console.log(usuarios);
+        const allUserMessages = await Message.find({
+            $or: [{ from: req.usuarioToken.username }, { to: req.usuarioToken.username }]
+        })
+        .sort({"createdAt": 'desc'});
+
+        let usuariosMessage = [];
+
+        usuarios = usuarios.map(otherUser => {
+            let latestMessage = allUserMessages.find(
+                m => m.from === otherUser.username || m.to === otherUser.username
+            )
+            let newUsuario =  {
+                _id: otherUser._id,
+                name: otherUser.name,
+                username: otherUser.username,
+                imgURL: otherUser.imgURL,
+                createdAt: otherUser.createdAt,
+                latestMessage: latestMessage? latestMessage : null 
+            };
+            usuariosMessage.push(newUsuario)
+            // otherUser.latestMessage = latestMessage
+            // return otherUser            
+        }); 
     
-    return res.status(200).json({ usuarios })
+        return res.status(200).json({ usuariosMessage })
+
+    } catch (error) {
+        return res.status(500).json({ error })
+    }
 };
