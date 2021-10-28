@@ -5,6 +5,7 @@ const AuthStateContext = createContext();
 const AuthDispatchContext = createContext();
 
 let usuario = null;
+let chatUser = null;
 
 const token = localStorage.getItem('tokenImessage');
 if(token){
@@ -35,13 +36,18 @@ const authReducer = (state, action) => {
                 ...state,
                 usuario: null
             }
+        case 'SET_CHAT_USERNAME':
+            return {
+                ...state,
+                chatUser: action.payload
+            }
         default:
             return state
     }
 };
 
 export const AuthProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(authReducer, { usuario });
+    const [state, dispatch] = useReducer(authReducer, { usuario, chatUser });
 
     return (
         <AuthDispatchContext.Provider value={dispatch}>

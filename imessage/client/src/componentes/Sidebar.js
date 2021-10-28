@@ -1,16 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 import { Avatar, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import RateReviewOutlinedIcon from '@mui/icons-material/RateReviewOutlined';
 import SidebarChat from './SidebarChat';
 
-import { useAuthDispatch } from '../context/auth';
+import { useAuthDispatch, useAuthState } from '../context/auth';
+import axios from '../util/axios';
 
 // PUSHER
 
 const Sidebar = () => {
     const dispatch = useAuthDispatch();
+    const { usuario } = useAuthState();
+    const [users, setUsers] = useState(null);
+
+    const token = localStorage.getItem('tokenImessage');
+    
+    const getUsers = async () => {
+        try {
+            let options = {
+                headers: {
+                    'Authorization': `Bearer ${token? token : null}`
+                }
+            }
+
+            const data = await axios.get('/getUsers', options);
+            setUsers(data.data.usuariosMessage);
+        } catch (error) {
+            console.log(error.response);
+        }
+    };
+
+    useEffect(() => {
+        getUsers();
+    }, []);
 
     const logout = () => {
         dispatch({
@@ -23,7 +47,7 @@ const Sidebar = () => {
             <div className="sidebar__header">
                 <Avatar 
                     className="sidebar__avatar"
-                    src="https://avatars.githubusercontent.com/u/54208914?v=4"
+                    src={usuario.imagen}
                     onClick={logout}
                 />
                 <div className="sidebar__input">
@@ -36,9 +60,11 @@ const Sidebar = () => {
             </div>
 
             <div className="sidebar__chats">
-                <SidebarChat />
-                <SidebarChat />
-                <SidebarChat />
+                {
+                    users && users.map(user => (
+                        <SidebarChat key={user._id} user={user} />
+                    ))
+                }
             </div>
         </div>
     )

@@ -27,6 +27,7 @@
 
 .chat__messages {
   flex: 1;
+  padding: 1rem;
 }
 
 .chat__input {

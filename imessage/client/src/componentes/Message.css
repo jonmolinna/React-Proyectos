@@ -1,43 +1,23 @@
 .message {
-  display: flex;
-  align-items: center;
   position: relative;
+  padding: 10px;
   width: fit-content;
-  justify-content: space-between;
-  margin: 15px;
+  border-radius: 10px;
+  background-color: #aca3a3;
+  margin-bottom: 1.9rem;
+  font-weight: 100;
+  font-size: 0.9rem;
+  color: white;
 }
 
-.message > p {
-  background-color: #f3f3f5;
-  font-size: medium;
-  padding: 15px;
-  border-radius: 20px;
-  margin: 10px;
-  margin-right: auto;
-}
-
-.message > small {
-  color: gray;
-  position: absolute;
-  font-size: 8px;
-  bottom: -5px;
-  right: 0;
-}
-
-.message__sender {
+.chatMessage__reciever {
   margin-left: auto;
-}
-
-.message__sender > .message__photo {
-  order: 1;
-  margin: 15px;
-}
-
-.message__photo {
-  order: 0;
-}
-
-.message__sender > p {
   background-color: #3cabfa;
+  color: white;
+}
+
+.message__timestamp {
+  font-size: xx-small;
+  margin-left: 10px;
   color: white;
 }

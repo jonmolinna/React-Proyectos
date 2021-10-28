@@ -1,17 +1,20 @@
 import React from 'react';
 import './Message.css';
-import { Avatar } from '@mui/material';
+import moment from 'moment';
 
-const Message = () => {
+import { useAuthState } from '../context/auth';
+
+const Message = ({ messages }) => {
+    const { usuario } = useAuthState();
+    let isUser = messages.from === usuario.username
+
     return (
-        <div className="message message__sender">
-            <Avatar 
-                className="message__photo"
-                src="https://avatars.githubusercontent.com/u/54208914?v=4" 
-            />
-            <p>Messages</p>
-            <small>fecha</small>
-        </div>
+        <p className={`message ${isUser? 'chatMessage__reciever': ''}`}>
+            { messages.message }
+            <span className="message__timestamp">
+                {moment(messages.createdAt).format('LLL')}
+            </span >
+        </p>
     )
 }
 
