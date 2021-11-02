@@ -1,0 +1,20 @@
+Backend
+----------------------------------------------
+npm init --yes
+npm install express
+npm install mongoose
+npm install cors
+npm install nodemon -D
+npm install bcryptjs
+npm install jsonwebtoken
+
+Frontend
+------------------------------------------
+npm install axios
+npm install react-toastify
+npm install react-router-dom
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material @mui/styled-engine-sc styled-components
+npm install @mui/icons-material
+npm install jwt-decode
+npm install moment

@@ -6,11 +6,6 @@
   cursor: pointer;
 }
 
-.sidebarChat:hover {
-  background-color: #3e93fd;
-  color: white;
-}
-
 .sidebarChat__info {
   margin-left: 15px;
   position: relative;
@@ -31,4 +26,14 @@
   position: absolute;
   top: 5px;
   right: 0;
+}
+
+.sidebarChat:hover {
+  background-color: #3e93fd;
+  color: white;
+}
+
+.sidebarChat__active {
+  background-color: #3e93fd;
+  color: white;
 }

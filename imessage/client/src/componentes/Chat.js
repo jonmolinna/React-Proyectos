@@ -11,33 +11,58 @@ import Capitalize from '../util/capitalize';
 const Chat = () => {
     const { chatUser } = useAuthState();
     const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
     const token = localStorage.getItem('tokenImessage');
 
-    const getMessages = async (chatUser) => {
-        if(!chatUser) return null;
+    useEffect(() => {
+        const getMessages = async (chatUser) => {
+            if(!chatUser) return null;
+    
+            try {
+                let options = {
+                    headers: {
+                        'Authorization': `Bearer ${token? token : null}`
+                    }
+                }
+                const data = await axios.get(`/getMessages?from=${chatUser.username}`, options);
+                setMessages(data.data.messages);
+            } catch (error) {
+                console.log(error.response)
+            }
+        };
+
+        getMessages(chatUser);
+
+    }, [chatUser, token]);
+
+    const addMessage = async (e) => {
+        e.preventDefault();
 
         try {
-            let options = {
-                headers: {
-                    'Authorization': `Bearer ${token? token : null}`
-                }
-            }
-            const data = await axios.get(`/getMessages?from=${chatUser.username}`, options);
-            setMessages(data.data.messages);
+            const config = {
+                headers: { Authorization: `Bearer ${token? token : null}` }
+            };
+
+            const body = {
+                to: chatUser.username,
+                    message: newMessage
+            };
+
+            await axios.post('/addMessage', body, config);
+            setNewMessage('');
         } catch (error) {
             console.log(error.response)
         }
-    }
-
-    useEffect(() => {
-        getMessages(chatUser);
-
-    }, [chatUser]);
+    };
 
     return (
         <div className="chat">
             <div className="chat__header">
-                <h4>To: <span className="chat__name">name</span></h4>
+                <h4>To: 
+                    <span className="chat__name">
+                        { chatUser && `${Capitalize(chatUser.name)}`}
+                    </span>
+                </h4>
                 <strong>Details</strong>
             </div>
 
@@ -45,13 +70,25 @@ const Chat = () => {
                 {
                     messages.length > 0 ? (
                         messages.map( message => <Message messages={message} key={message._id} />)
-                     ) : (<p>Hola</p>)
+                     ) : 
+                     (
+                     <p className="chat__present">
+                         {
+                            chatUser && <span>{`${Capitalize(chatUser.name)} se unió a Imessage clone`}</span>
+                         }
+                    </p>
+                    )
                 }
             </div>
 
             <div className="chat__input">
-                <form>
-                    <input type="text" placeholder="Mensaje" />
+                <form onSubmit={addMessage}>
+                    <input 
+                        type="text" 
+                        placeholder="Escribe un mensaje"
+                        value={newMessage}
+                        onChange={e => setNewMessage(e.target.value)} 
+                    />
                     <button>Enviar Message</button>
                 </form>
                 <IconButton>

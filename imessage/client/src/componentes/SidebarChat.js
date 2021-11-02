@@ -4,13 +4,14 @@ import { Avatar } from '@mui/material';
 import moment from 'moment';
 
 import Capitalize from '../util/capitalize'
-import { useAuthDispatch } from '../context/auth';
+import { useAuthDispatch, useAuthState } from '../context/auth';
 
 // Pusher
 
 const SidebarChat = ({ user }) => {
     let nombre = Capitalize(user.name);
     const dispatch = useAuthDispatch();
+    const { chatUser } = useAuthState();
 
     const sendUsername = () => {
         dispatch({
@@ -19,8 +20,10 @@ const SidebarChat = ({ user }) => {
         })
     };
 
+    const isActive = user.username === chatUser?.username;
+
     return (
-        <div className="sidebarChat" onClick={sendUsername}>
+        <div className={`sidebarChat ${isActive && 'sidebarChat__active'}`} onClick={sendUsername}>
             <Avatar src={ user.imgURL } />
             <div className="sidebarChat__info">
                 <h3>{ nombre }</h3>
@@ -31,7 +34,7 @@ const SidebarChat = ({ user }) => {
                 </p>
                 <small>
                     {
-                       user.latestMessage? `${moment(user.latestMessage.createdAt).format('L')}` : `${moment(user.createdAt).format('L')}`
+                       user.latestMessage? `${moment(user.latestMessage.createdAt).format('LL')}` : `${moment(user.createdAt).format('LL')}`
                     }
                 </small>
             </div>

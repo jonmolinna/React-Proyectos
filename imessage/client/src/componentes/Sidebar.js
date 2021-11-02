@@ -17,24 +17,26 @@ const Sidebar = () => {
 
     const token = localStorage.getItem('tokenImessage');
     
-    const getUsers = async () => {
-        try {
-            let options = {
-                headers: {
-                    'Authorization': `Bearer ${token? token : null}`
-                }
-            }
-
-            const data = await axios.get('/getUsers', options);
-            setUsers(data.data.usuariosMessage);
-        } catch (error) {
-            console.log(error.response);
-        }
-    };
+    
 
     useEffect(() => {
+        const getUsers = async () => {
+            try {
+                let options = {
+                    headers: {
+                        'Authorization': `Bearer ${token? token : null}`
+                    }
+                }
+    
+                const data = await axios.get('/getUsers', options);
+                setUsers(data.data.usuariosMessage);
+            } catch (error) {
+                console.log(error.response);
+            }
+        };
+
         getUsers();
-    }, []);
+    }, [token]);
 
     const logout = () => {
         dispatch({

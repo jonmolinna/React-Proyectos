@@ -23,6 +23,7 @@
 
 .chat__name {
   color: black;
+  margin-left: 1ch;
 }
 
 .chat__messages {
@@ -52,4 +53,15 @@
 
 .chat__input > form > button {
   display: none;
+}
+
+.chat__present {
+  text-align: center;
+}
+
+.chat__present span {
+  background-color: #8a8a8a;
+  padding: 0.4rem;
+  color: white;
+  border-radius: 20px;
 }
