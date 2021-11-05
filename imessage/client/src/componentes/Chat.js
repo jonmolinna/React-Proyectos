@@ -3,8 +3,10 @@ import './Chat.css';
 import { IconButton } from '@mui/material';
 import MicNoneIcon from '@mui/icons-material/MicNone';
 import Message from './Message';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import moment from 'moment';
 
-import { useAuthState } from '../context/auth';
+import { useAuthState, useAuthDispatch } from '../context/auth';
 import axios from '../util/axios';
 import Capitalize from '../util/capitalize';
 
@@ -13,6 +15,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const token = localStorage.getItem('tokenImessage');
+    const dispatch = useAuthDispatch();
 
     useEffect(() => {
         const getMessages = async (chatUser) => {
@@ -55,15 +58,30 @@ const Chat = () => {
         }
     };
 
+    const removeChat = () => {
+       dispatch({
+           type: 'REMOVE_CHAT_USERNAME'
+       })
+    };
+
+    let fecha = chatUser.latestMessage? chatUser.latestMessage.createdAt : chatUser.createdAt;
+
     return (
         <div className="chat">
             <div className="chat__header">
-                <h4>To: 
-                    <span className="chat__name">
-                        { chatUser && `${Capitalize(chatUser.name)}`}
-                    </span>
-                </h4>
-                <strong>Details</strong>
+                <div className="chat__headerLeft">
+                    <IconButton onClick={removeChat}>
+                        <ArrowBackIcon />
+                    </IconButton>
+                    <h4>To: 
+                        <span className="chat__name">
+                            { chatUser && `${Capitalize(chatUser.name)}`}
+                        </span>
+                    </h4>
+                </div>
+                <strong>
+                    { fecha && moment(fecha).format('LLL')}
+                </strong>
             </div>
 
             <div className="chat__messages">

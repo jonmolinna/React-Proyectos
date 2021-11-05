@@ -11,10 +11,17 @@ const Home = () => {
 
     return (
         <div className="home">
-            <Sidebar />
-            {
-                chatUser? <Chat /> : <Inicio />
-            }
+            <div className="home__movil">
+                {
+                    chatUser? <Chat /> : <Sidebar />
+                }
+            </div>
+            <div className="home__desktop">
+                <Sidebar />
+                {
+                    chatUser? <Chat /> : <Inicio />
+                }
+            </div>
         </div>
     )
 }

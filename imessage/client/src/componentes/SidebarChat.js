@@ -34,7 +34,7 @@ const SidebarChat = ({ user }) => {
                 </p>
                 <small>
                     {
-                       user.latestMessage? `${moment(user.latestMessage.createdAt).format('LL')}` : `${moment(user.createdAt).format('LL')}`
+                       user.latestMessage? `${moment(user.latestMessage.createdAt).format('L')}` : `${moment(user.createdAt).format('L')}`
                     }
                 </small>
             </div>

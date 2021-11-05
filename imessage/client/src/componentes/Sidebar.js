@@ -17,8 +17,6 @@ const Sidebar = () => {
 
     const token = localStorage.getItem('tokenImessage');
     
-    
-
     useEffect(() => {
         const getUsers = async () => {
             try {
@@ -41,6 +39,9 @@ const Sidebar = () => {
     const logout = () => {
         dispatch({
             type: 'LOGOUT'
+        });
+        dispatch({
+            type: 'REMOVE_CHAT_USERNAME'
         })
     };
 
@@ -49,7 +50,7 @@ const Sidebar = () => {
             <div className="sidebar__header">
                 <Avatar 
                     className="sidebar__avatar"
-                    src={usuario.imagen}
+                    src={usuario.imgURL || usuario.imagen}
                     onClick={logout}
                 />
                 <div className="sidebar__input">

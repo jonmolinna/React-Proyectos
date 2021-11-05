@@ -8,7 +8,7 @@
 }
 
 .chat__header {
-  padding: 5px;
+  padding: 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,9 +16,19 @@
   background-color: #f5f5f5;
 }
 
-.chat__header > h4 {
+.chat__headerLeft {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat__headerLeft > h4 {
   font-weight: 400;
   color: gray;
+}
+
+.chat__header strong {
+  font-size: 1rem;
+  font-weight: 100;
 }
 
 .chat__name {
@@ -27,6 +37,9 @@
 }
 
 .chat__messages {
+  background-image: url("https://res.cloudinary.com/dhdxq3mkm/image/upload/v1635970260/whatsapp-project/diente-de-leon_we0c0z.png");
+  background-repeat: repeat;
+  background-position: center;
   flex: 1;
   padding: 1rem;
 }

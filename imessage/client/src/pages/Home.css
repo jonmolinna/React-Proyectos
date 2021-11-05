@@ -1,3 +1,25 @@
-.home {
+/* .home {
   display: flex;
+} */
+
+.home__movil {
+  height: 100vh;
+}
+
+.chat__header strong {
+  display: none;
+}
+
+.home__desktop {
+  display: none;
+}
+
+/*********** Media 770px ****************/
+@media screen and (min-width: 770px) {
+  .home__movil {
+    display: none;
+  }
+  .home__desktop {
+    display: flex;
+  }
 }

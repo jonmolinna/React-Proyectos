@@ -12,7 +12,7 @@ const Message = ({ messages }) => {
         <p className={`message ${isUser? 'chatMessage__reciever': ''}`}>
             { messages.message }
             <span className="message__timestamp">
-                {moment(messages.createdAt).format('LLL')}
+                {moment(messages.createdAt).format('lll')}
             </span >
         </p>
     )

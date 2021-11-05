@@ -41,6 +41,11 @@ const authReducer = (state, action) => {
                 ...state,
                 chatUser: action.payload
             }
+        case 'REMOVE_CHAT_USERNAME':
+            return {
+                ...state,
+                chatUser: null,
+            }
         default:
             return state
     }
