@@ -19,7 +19,7 @@ const Register = () => {
                 </form>
             </div>
             <div className="register__bottom">
-                <h2>Sesion</h2>
+                <p>¿Tienes una cuenta? <a href="index.html">Inicia Sesión</a></p>
             </div>
         </div>
     )
