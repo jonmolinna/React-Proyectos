@@ -49,6 +49,13 @@ const Post = () => {
             </div>
 
             <p className="post__like">0 Me gusta</p>
+
+            <p><span>Username</span>Esto es una descripcion del post</p>
+
+            {/* Comentarios */}
+            {/* Fecha del post */}
+            {/* Input Post */}
+
         </div>
     )
 }
