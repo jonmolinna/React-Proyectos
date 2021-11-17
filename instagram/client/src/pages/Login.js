@@ -1,5 +1,6 @@
 import React from 'react';
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -17,7 +18,7 @@ const Login = () => {
            </div>
 
            <div className="login__bottom">
-               <p>¿No tienes una cuenta? <a href="index.html">Regístrate</a></p>
+               <p>¿No tienes una cuenta? <Link to="/register">Regístrate</Link></p>
            </div>
         </div>
     )
