@@ -41,7 +41,7 @@ export const createUser = async (req, res) => {
         return res.json({ usuario });
         
     } catch (error) {
-        return res.json({ error })
+        return res.status(500).json({ error })
     }
 };
 
