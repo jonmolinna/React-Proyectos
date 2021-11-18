@@ -11,8 +11,13 @@ const userSchema = mongoose.Schema({
         lowercase: true,
         trim: true
     },
-    password: String,
-    imgUrl: String,
+    password: {
+        type: String,
+    },
+    imgUrl: {
+        type: String,
+        default: null
+    },
 }, { 
     timestamps: true, 
     versionKey: false 

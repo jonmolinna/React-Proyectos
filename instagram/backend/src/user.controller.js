@@ -10,7 +10,8 @@ function generateToken(user){
         {
             id: user._id,
             username: user.username,
-            name: user.name
+            name: user.name,
+            imgUrl: user.imgUrl,
         },
         config.SECRET_KEY,
         { expiresIn: '1h'}
@@ -72,11 +73,14 @@ export const loginUser = async (req, res) => {
        const token = generateToken(user);
 
        return res.status(200).json({
-            ...user.toJSON(),
+            id: user._id,
+            name: user.name,
+            username: user.username,
+            imgUrl: user.imgUrl,
             token
         });
         
     } catch (error) {
-        return res.json({ error })
+        return res.status(500).json({ error })
     }
 }

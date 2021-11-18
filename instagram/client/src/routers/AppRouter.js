@@ -6,6 +6,7 @@ import NotFoundPage from '../pages/NotFoundPage';
 import Register from '../pages/Register';
 
 const AppRouter = () => {
+
     return (
         <Switch>
             <Route exact path="/" component={Instagram} />
