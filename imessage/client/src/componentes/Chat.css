@@ -1,0 +1,80 @@
+.chat {
+  flex: 0.65;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  border-left: 1px solid lightgray;
+}
+
+.chat__header {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  background-color: #f5f5f5;
+}
+
+.chat__headerLeft {
+  display: flex;
+  flex-direction: row;
+}
+
+.chat__headerLeft > h4 {
+  font-weight: 400;
+  color: gray;
+}
+
+.chat__header strong {
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.chat__name {
+  color: black;
+  margin-left: 1ch;
+}
+
+.chat__messages {
+  background-image: url("https://res.cloudinary.com/dhdxq3mkm/image/upload/v1635970260/whatsapp-project/diente-de-leon_we0c0z.png");
+  background-repeat: repeat;
+  background-position: center;
+  flex: 1;
+  padding: 1rem;
+}
+
+.chat__input {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-top: 1px solid lightgray;
+  background-color: #f5f5f5;
+}
+
+.chat__input > form {
+  flex: 1;
+}
+
+.chat__input > form > input {
+  width: 98%;
+  outline-width: 0;
+  border: 1px solid lightgray;
+  border-radius: 999px;
+  padding: 5px;
+}
+
+.chat__input > form > button {
+  display: none;
+}
+
+.chat__present {
+  text-align: center;
+}
+
+.chat__present span {
+  background-color: #8a8a8a;
+  padding: 0.4rem;
+  color: white;
+  border-radius: 20px;
+}
