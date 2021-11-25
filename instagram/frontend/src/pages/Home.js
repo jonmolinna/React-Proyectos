@@ -3,6 +3,7 @@ import './Home.css';
 
 import Header from '../componentes/Header';
 import Post from '../componentes/Post';
+import Footer from '../componentes/Footer';
 
 const Home = () => {
     return (
@@ -22,6 +23,7 @@ const Home = () => {
                     Usuario
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

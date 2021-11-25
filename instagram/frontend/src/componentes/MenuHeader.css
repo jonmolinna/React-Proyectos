@@ -1,0 +1,20 @@
+.MenuHeader__Login {
+  border: 1px solid transparent;
+  background-color: #0095f6;
+  margin-right: 10px;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 5px 9px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.MenuHeader__Register {
+  font-size: 14px;
+  color: #0095f6;
+  font-weight: 600;
+  line-height: 28px;
+}
