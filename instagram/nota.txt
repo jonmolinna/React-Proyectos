@@ -7,6 +7,8 @@ npm install cors
 npm install nodemon -D
 npm install bcryptjs
 npm install jsonwebtoken
+npm install multer
+npm install cloudinary
 
 
 Frontend

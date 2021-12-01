@@ -1,30 +1,22 @@
 import React from 'react';
 import './Footer.css';
-import { Button } from '@mui/material'
 
 const Footer = () => {
     return (
         <div className="footer">
-            <dir className="container">
-            <form className="footer__form">
-                <input 
-                    type="text"
-                    name="comment"
-                    placeholder="Ingrese un Comentario"   
-                />
-                <Button
-                    variant="contained"
-                    component="label"
-                >
-                Seleccione Imagen
-                <input
-                    type="file"
-                    hidden
-                />
-                </Button>
-                <button type="submit">Publicar</button>
-            </form>
-            </dir>
+            <div className="container">
+                <form className="footer__form">
+                    <div className="footer__group">
+                        <input 
+                            type="text"
+                            name="comment"
+                            placeholder="Ingrese un Comentario"   
+                        />
+                        <input type="file"/>
+                    </div>
+                    <button type="submit">Publicar</button>
+                </form>
+            </div>
         </div>
     )
 }

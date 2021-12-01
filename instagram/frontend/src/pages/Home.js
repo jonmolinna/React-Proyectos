@@ -1,15 +1,18 @@
 import React from 'react';
 import './Home.css';
-
 import Header from '../componentes/Header';
 import Post from '../componentes/Post';
 import Footer from '../componentes/Footer';
 
+import { useAuthState } from '../context/auth';
+
 const Home = () => {
+    const { user } = useAuthState();
+
     return (
         <div className="home">
             <Header />
-            <div className="home__content container">
+            <div className="home__content">
                 <div className="home__left">
                     <Post />
                     <Post />
@@ -23,7 +26,9 @@ const Home = () => {
                     Usuario
                 </div>
             </div>
-            <Footer />
+            {
+                user && <Footer />
+            }
         </div>
     )
 }

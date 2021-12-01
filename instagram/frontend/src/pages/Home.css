@@ -1,0 +1,6 @@
+.home__right {
+  display: none;
+}
+
+@media screen and (min-width: 48em) {
+}
