@@ -7,6 +7,7 @@ import instagramRouter from './router.js';
 // App Config
 const app = express();
 const port = process.env.PORT || 9000;
+app.use('/uploads', express.static('uploads'));
 
 // Middleware
 app.use(cors());
