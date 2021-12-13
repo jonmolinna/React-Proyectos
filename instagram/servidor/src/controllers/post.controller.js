@@ -27,5 +27,12 @@ export const createPost = async (req, res) => {
 };
 
 export const getAllPosts = async (req, res) => {
-    
+    try {
+        const posts = await Post.find();
+        posts.sort((a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+        return res.json({ posts });
+    } catch (error) {
+        return res.status(401).json({ message: error})
+    }
 }

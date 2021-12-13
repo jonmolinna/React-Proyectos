@@ -4,7 +4,7 @@ const validationImg = (req, res, next) => {
     // Archivos Vacios
     if (typeof(req.file) === 'undefined'){
         return res.status(400).json({
-            errors: 'Problema con el envio de datos',
+            message: 'Seleccione un imagen',
         })
     }
 
@@ -16,7 +16,7 @@ const validationImg = (req, res, next) => {
         // removemos el archivo
         fs.unlinkSync(image);
         return res.status(400).json({
-            errors: 'Archivo no compatible',
+            message: 'Archivo no compatible',
         });
     }
 
@@ -25,14 +25,14 @@ const validationImg = (req, res, next) => {
         // removemos el archivo
         fs.unlinkSync(image);
         return res.status(400).json({
-            errors: 'El archivo es demasiado grande, se permite menor a 4MB'
+            message: 'El archivo es demasiado grande, se permite menor a 4MB'
         })
     }
 
     // Verificar campos vacios
     if(!image) {
         return res.status(400).json({
-            errors: 'Se requiere una Imagen'
+            message: 'Se requiere una Imagen'
         })
     }
 

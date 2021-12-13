@@ -47,3 +47,15 @@
   margin-left: 10px;
   margin-top: 0;
 }
+
+.post__comment {
+  padding: 0 10px;
+  color: #262626;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.post__comment span {
+  margin-right: 1ch;
+  font-weight: 600;
+}

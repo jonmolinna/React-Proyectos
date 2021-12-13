@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
+import { Link } from 'react-router-dom';
 
 import { useAuthDispatch } from '../context/auth';
 
@@ -32,7 +33,7 @@ const AvatarHeader = () => {
             <Box className="header__avatar">
                 <Tooltip title="Mi Cuenta">
                     <IconButton onClick={handleClick}>
-                        <Avatar src="https://avatars.githubusercontent.com/u/54208914?v=4"/>
+                        <Avatar />
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -75,6 +76,11 @@ const AvatarHeader = () => {
             </MenuItem>
             <MenuItem>
                 Configuración
+            </MenuItem>
+            <MenuItem>
+                <Link to="/loader">
+                    Subir
+                </Link>
             </MenuItem>
             <Divider />
             <MenuItem onClick={logout}>

@@ -7,13 +7,15 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
-const Post = () => {
+const Post = ({ post }) => {
+    const { username, imageUrl, body } = post;
+    
     return (
         <div className="post">
             <div className="post__header">
                 <aside className="post__avatar">
-                    <Avatar src="https://avatars.githubusercontent.com/u/54208914?v=4"/>
-                    <a href="index.html">username</a>
+                    <Avatar />
+                    <a href="index.html">{username}</a>
                 </aside>
                 <aside className="post__menu">
                     <IconButton>
@@ -24,7 +26,7 @@ const Post = () => {
 
             <div className="post__image">
                 <img 
-                    src="https://res.cloudinary.com/dhdxq3mkm/image/upload/v1633005084/whatsapp-project/Leon_cnipqa.png" 
+                    src={imageUrl}
                     alt="" 
                 />
             </div>
@@ -50,7 +52,11 @@ const Post = () => {
 
             <p className="post__like">0 Me gusta</p>
 
-            <p><span>Username</span>Esto es una descripcion del post</p>
+            {
+                body && <p className="post__comment"><span>{username}</span>{ body }</p> 
+                
+            }
+
 
             {/* Comentarios */}
             {/* Fecha del post */}
