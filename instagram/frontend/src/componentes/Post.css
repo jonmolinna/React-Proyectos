@@ -3,7 +3,7 @@
   margin-bottom: 45px;
   background-color: #ffff;
   padding: 10px 0;
-  max-width: 500px;
+  max-width: 550px;
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
 }
@@ -58,4 +58,11 @@
 .post__comment span {
   margin-right: 1ch;
   font-weight: 600;
+}
+
+@media screen and (min-width: 35em) {
+  .post {
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+  }
 }

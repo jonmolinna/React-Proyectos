@@ -1,0 +1,39 @@
+.usuarios {
+  margin-top: 3rem;
+}
+
+.usuarios > p {
+  color: #8e8e8e;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.usuarios__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.usuarios__user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.usuarios__details {
+  margin-left: 0.5rem;
+}
+
+.usuarios__details > p {
+  color: #262626;
+  font-weight: 600;
+  overflow: hidden;
+  font-size: 14px;
+  margin-bottom: 0.1rem;
+  margin-top: 0.5rem;
+}
+
+.usuarios__details > small {
+  color: #8e8e8e;
+  font-weight: 400;
+  font-size: 12px;
+}

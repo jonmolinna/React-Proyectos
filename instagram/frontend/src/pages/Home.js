@@ -4,6 +4,7 @@ import Header from '../componentes/Header';
 import Post from '../componentes/Post';
 
 import axios from '../util/axios';
+import Usuarios from '../componentes/Usuarios';
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -21,8 +22,6 @@ const Home = () => {
         getPosts();
     }, []);
 
-    console.log(posts);
-
     return (
         <div className="home">
             <Header />
@@ -35,7 +34,7 @@ const Home = () => {
                     }
                 </div>
                 <div className="home__right">
-                    Usuario
+                    <Usuarios />
                 </div>
             </div>
         </div>

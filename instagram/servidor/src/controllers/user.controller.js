@@ -83,3 +83,17 @@ export const loginUser = async (req, res) => {
         return res.status(500).json({ error })
     }
 }
+
+export const getFiveUsers = async (req, res) => {
+    try {
+        let fiveUsers = [];
+        console.log(req.userToken)
+        const users = await User.find({}, {password: 0});
+        users.sort((a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        
+
+        return res.status(200).json({ users });
+    } catch (error) {
+        return res.status(500).json({ message: error})
+    }
+};

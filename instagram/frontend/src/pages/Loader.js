@@ -32,8 +32,7 @@ const Loader = () => {
                 }
             }
 
-            let data = await axios.post('/post', formData, options);
-            console.log(data);
+            await axios.post('/post', formData, options);
             setImage('');
             setComment('');
             

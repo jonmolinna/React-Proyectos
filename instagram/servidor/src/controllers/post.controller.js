@@ -13,6 +13,7 @@ export const createPost = async (req, res) => {
             imageUrl: result.secure_url,
             image_id: result.public_id,
             username: req.userToken.username,
+            name: req.userToken.name,
             createdAt: new Date().toISOString(),
         });
 

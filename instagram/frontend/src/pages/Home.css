@@ -1,6 +1,51 @@
+.home {
+  height: 100vh;
+  width: 100%;
+}
+
+.home__content {
+  display: flex;
+}
+
+.home__left {
+  height: calc(100vh - 54px);
+  overflow: scroll;
+  flex: 1;
+}
+
+/* Hide scrollbar for chrome, safari and opera  */
+.home__left::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, edge and firefox */
+.home__left {
+  -ms-overflow-style: none; /* IE and Edge*/
+  scrollbar-width: none; /* firefox*/
+}
+
 .home__right {
   display: none;
 }
 
 @media screen and (min-width: 48em) {
+  .home__content {
+    max-width: 975px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home__left {
+    height: calc(100vh - 54px);
+    overflow: scroll;
+    flex: 0.6;
+  }
+
+  .home__right {
+    display: block;
+    height: calc(100vh - 54px);
+    flex: 0.4;
+    margin-left: 1rem;
+  }
 }

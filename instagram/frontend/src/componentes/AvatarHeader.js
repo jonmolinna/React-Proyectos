@@ -7,13 +7,18 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
+import { blueGrey } from '@mui/material/colors';
 
-import { useAuthDispatch } from '../context/auth';
+import { useAuthDispatch, useAuthState } from '../context/auth';
+import { chatAt } from '../util/chatAt.js';
 
 const AvatarHeader = () => {
     const dispatch = useAuthDispatch();
+    const { user } = useAuthState();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    const firstChar = chatAt(user.name);
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -33,7 +38,7 @@ const AvatarHeader = () => {
             <Box className="header__avatar">
                 <Tooltip title="Mi Cuenta">
                     <IconButton onClick={handleClick}>
-                        <Avatar />
+                        <Avatar sx={{ bgcolor: blueGrey[600] }}>{firstChar}</Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>

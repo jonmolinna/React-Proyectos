@@ -12,6 +12,7 @@ const postSchema = mongoose.Schema({
     },
     image_id: String,
     username: String,
+    name: String,
     createdAt: String,
     comments: [
         {
@@ -28,9 +29,9 @@ const postSchema = mongoose.Schema({
     ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
+        ref: "User",
     }
 
 });
 
-export default mongoose.model('post', postSchema);
+export default mongoose.model('Post', postSchema);
