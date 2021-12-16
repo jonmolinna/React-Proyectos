@@ -1,0 +1,11 @@
+.comments {
+  color: #262626;
+  margin-top: -0.69rem;
+  font-size: 14px;
+}
+
+.comments b {
+  color: #262626;
+  font-size: 14px;
+  margin-right: 1ch;
+}

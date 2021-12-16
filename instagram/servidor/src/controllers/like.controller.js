@@ -15,7 +15,7 @@ export const likePost = async (req, res) => {
                 // like
                 post.likes.push({
                     username,
-                    createdAt: new Date().toISOString()
+                    createdAt:  Date.now(),
                 })
             }
             await post.save();

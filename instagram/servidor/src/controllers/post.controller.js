@@ -14,7 +14,7 @@ export const createPost = async (req, res) => {
             image_id: result.public_id,
             username: req.userToken.username,
             name: req.userToken.name,
-            createdAt: new Date().toISOString(),
+            createdAt:  Date.now(),
         });
 
         const post = await newPost.save();

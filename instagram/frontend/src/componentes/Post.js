@@ -6,14 +6,19 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import { blueGrey } from '@mui/material/colors';
+import moment from 'moment';
 
 import { chatAt } from '../util/chatAt.js';
 import Like from './Like';
+import Comments from './Comments';
+import PostInput from './PostInput';
+import { useAuthState } from '../context/auth.js'
 
 const Post = ({ post }) => {
-    const { _id, name, username, imageUrl, body } = post;
+    const { user } = useAuthState();
+    const { _id, name, username, imageUrl, body, likes, comments, createdAt } = post;
     let firstStr = chatAt(name);
-    let countLikes = post.likes.length;
+    let fecha = moment(createdAt).fromNow();
     
     return (
         <div className="post">
@@ -52,19 +57,30 @@ const Post = ({ post }) => {
                     </IconButton>
                 </div>
             </div>
-
-            <p className="post__like">{countLikes} Me gusta</p>
-
+            {
+                likes.length> 0 && <p className="post__like">{likes.length} Me gusta</p>
+            }
             {
                 body && <p className="post__comment"><span>{username}</span>{ body }</p> 
                 
             }
 
-
-            {/* Comentarios */}
-            {/* Fecha del post */}
-            {/* Input Post */}
-
+            {
+                comments.length> 0 && <p className='post__commentCount'>{comments.length} comentarios</p>
+            }
+            <div className='post__comments'>
+                {
+                    comments && comments.map(comment => (
+                        <Comments key={comment._id} comment={comment} />
+                    ))
+                }
+            </div>
+            <time className='post__time'>{fecha}</time>
+            <div className='post__input'>
+                {
+                    user && <PostInput postId={_id} />
+                }
+            </div>
         </div>
     )
 }

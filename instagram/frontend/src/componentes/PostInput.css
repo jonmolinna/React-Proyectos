@@ -1,0 +1,19 @@
+.postinput {
+  display: flex;
+  align-items: center;
+}
+
+.postinput input {
+  flex: 1;
+  color: #262626;
+  height: 18px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.postinput__btn {
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: 600;
+}
