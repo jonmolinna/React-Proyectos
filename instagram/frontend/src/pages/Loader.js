@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Loader.css';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 
 import axios from '../util/axios';
 import Loading from '../componentes/Loading';
@@ -10,6 +11,9 @@ const Loader = () => {
     const [comment, setComment] = useState('');
     const [loading, setLoading] = useState(false);
     const token = localStorage.getItem('tokenInstagram');
+    let history = useHistory();
+
+    console.log('LOADER')
 
     // Cargando Imagen
     const upload = (e) => {
@@ -21,6 +25,7 @@ const Loader = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+        console.log(e.target.value)
         try {
             let formData = new FormData();
             formData.append("image", image);
@@ -33,6 +38,8 @@ const Loader = () => {
             }
 
             await axios.post('/post', formData, options);
+            toast.success('Se subió la publicación');
+            history.push("/")
             setImage('');
             setComment('');
             

@@ -13,7 +13,11 @@ const Like = ({ postId, likes }) => {
     const token = localStorage.getItem('tokenInstagram');
     const [liked, setLiked] = useState(false);
 
+    console.log('Like')
+
     const handleLike = async () => {
+        if(!user) return false;
+
         try {
             let options = {
                 method: "POST",
@@ -24,7 +28,7 @@ const Like = ({ postId, likes }) => {
             await axios(`/likePost?postId=${postId}`, options);
         } catch (error) {
             toast.error(error.response.data.message)
-            console.log(error.response)
+            // console.log(error.response)
         }
 
     };

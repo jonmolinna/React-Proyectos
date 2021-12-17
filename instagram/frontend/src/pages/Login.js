@@ -16,6 +16,8 @@ const Login = () => {
     let history = useHistory();
     const dispatch = useAuthDispatch();
 
+    console.log('LOGIN')
+
     const handleChange = (e) => {
         setForm({
             ...form,

@@ -17,6 +17,8 @@ const Register = () => {
     const [errors, setErrors] = useState({});
     let history = useHistory();
 
+    console.log('REGISTER')
+
     const handleChange = (e) => {
         setForm({
             ...form,

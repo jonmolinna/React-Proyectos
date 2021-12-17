@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import { createUser, loginUser, getFiveUsers } from '../controllers/user.controller.js';
+import { createUser, loginUser, getThreeUsers } from '../controllers/user.controller.js';
 import { createPost, getAllPosts } from '../controllers/post.controller.js';
 import { likePost } from '../controllers/like.controller.js';
 import { commentPost } from '../controllers/commet.controller.js';
@@ -11,7 +11,7 @@ import verifyToken from '../utils/verifyToken.js';
 
 router.post('/addUser', createUser);
 router.post('/login', loginUser);
-router.get('/getUsers', getFiveUsers);
+router.get('/getUsers', getThreeUsers);
 
 router.post('/post', verifyToken, upload, validationImg, createPost);
 router.get('/posts', getAllPosts);

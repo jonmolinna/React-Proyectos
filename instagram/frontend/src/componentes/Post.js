@@ -19,6 +19,8 @@ const Post = ({ post }) => {
     const { _id, name, username, imageUrl, body, likes, comments, createdAt } = post;
     let firstStr = chatAt(name);
     let fecha = moment(createdAt).fromNow();
+
+    console.log('POST')
     
     return (
         <div className="post">

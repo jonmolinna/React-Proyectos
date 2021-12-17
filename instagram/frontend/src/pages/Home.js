@@ -9,6 +9,8 @@ import Usuarios from '../componentes/Usuarios';
 const Home = () => {
     const [posts, setPosts] = useState([]);
 
+    console.log('Home')
+
     useEffect(() => {
         const getPosts = async () => {
             try {
@@ -18,8 +20,8 @@ const Home = () => {
                 console.log(error);
             }
         }
-
         getPosts();
+        
     }, []);
 
     return (

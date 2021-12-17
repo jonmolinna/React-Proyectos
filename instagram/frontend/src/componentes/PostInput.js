@@ -9,6 +9,8 @@ const PostInput = ({ postId }) => {
     const [comment, setComment] = useState('');
     const token = localStorage.getItem('tokenInstagram');
 
+    console.log('POSTINPUT')
+
     const handleSubmit = async () => {
         try {
             let options = {
