@@ -5,7 +5,16 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import CallIcon from '@material-ui/icons/Call';
 import VideocamIcon from '@material-ui/icons/Videocam';
 
-const Header = ({ handleLogout }) => {
+import { useAuthDispatch } from '../context/auth.js';
+
+const Header = () => {
+    const dispatch = useAuthDispatch();
+
+    const handleLogout = () => {
+        dispatch({
+            type: 'LOGOUT'
+        })
+    };
 
     return (
         <div className="header">

@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import './Login.css';
+import { toast } from 'react-toastify';
 
-const Login = ({ handleUser }) => {
+import { useAuthDispatch } from '../context/auth.js';
+
+const Login = () => {
     const [username, setUsername] = useState('');
+    const dispatch = useAuthDispatch();
 
     const handleChange = (e) => {
         e.preventDefault();
-        if(!username) return window.alert('Ingrese tu Nombre');
-        handleUser(username)
+        if(!username) return toast.error('Ingrese un Nombre');
+        if(username.trim() === '') return toast.error('Ingrese un Nombre');
+
+        dispatch({
+            type: 'LOGIN',
+            payload: username.trim(),
+        })
         setUsername('');
     }
 
@@ -28,4 +37,4 @@ const Login = ({ handleUser }) => {
     )
 }
 
-export default Login
+export default Login;
