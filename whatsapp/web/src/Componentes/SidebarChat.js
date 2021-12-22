@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './SidebarChat.css';
 import { Avatar } from '@material-ui/core';
-import axios from '../helpers/axios';
-import { Link } from 'react-router-dom';
 import Pusher from 'pusher-js'
+
+import axios from '../helpers/axios';
+import { useAuthDispatch } from '../reducers/userReducer';
+import { TYPES } from '../reducers/actions/userActions';
 
 /// >>>> PUSHER
 const pusher = new Pusher('33bd7f1aa81d481acfaf', {
@@ -12,8 +14,15 @@ const pusher = new Pusher('33bd7f1aa81d481acfaf', {
 
 const SidebarChat = ({ chat }) => {
     let { id, image, name } = chat;
-
     const [chatInfo, setChatInfo] = useState('');
+    const dispatch = useAuthDispatch();
+
+    const handleMessageId = () => {
+        dispatch({
+            type: TYPES.GROUP_CHAT,
+            payload: id
+        })
+    };
     
     useEffect(() => {
         axios.get(`/getLastMessageGroup?id=${id}`)
@@ -32,15 +41,13 @@ const SidebarChat = ({ chat }) => {
     }, [id]);
 
     return (
-        <Link to={`/group/${id}`}>
-            <div className="sidebarChat">
-                <Avatar src={image} />
-                <div className="sidebarChat__info">
-                    <h2>{ name }</h2>
-                    <p>{ chatInfo.message }</p>
-                </div>
+        <div className="sidebarChat" onClick={handleMessageId}>
+            <Avatar src={image} />
+            <div className="sidebarChat__info">
+                <h2>{ name }</h2>
+                <p>{ chatInfo.message }</p>
             </div>
-        </Link>
+        </div>
     )
 }
 

@@ -5,3 +5,4 @@ npm install react-flip-move
 npm install react-router-dom
 npm install pusher-js
 npm install moment
+npm install react-toastify

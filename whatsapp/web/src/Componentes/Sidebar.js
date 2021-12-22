@@ -6,8 +6,11 @@ import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import SidebarChat from './SidebarChat';
-import axios from '../helpers/axios';
 import Pusher from 'pusher-js';
+
+import axios from '../helpers/axios';
+import { chatAt } from '../helpers/chatAt';
+import { useAuthState } from '../reducers/userReducer';
 
 /// PUSHER
 const pusher = new Pusher('33bd7f1aa81d481acfaf', {
@@ -16,6 +19,7 @@ const pusher = new Pusher('33bd7f1aa81d481acfaf', {
 
 const Sidebar = () => {
     const [chats, setChats] = useState([]);
+    const { username } = useAuthState();
 
     chats.sort((a, b) => Number(b.timestamp) - Number(a.timestamp));
 
@@ -39,7 +43,7 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <Avatar src="https://avatars3.githubusercontent.com/u/54208914?s=460&amp;u=425aa8d5d2421828268f07206f9299d83ec20149&amp;v=4" />
+                <Avatar >{chatAt(username)}</Avatar>
                 <div className="sidebar__headerRight">
                     <IconButton>
                         <DonutLargeIcon />
@@ -62,7 +66,7 @@ const Sidebar = () => {
 
             <div className="sidebar__chats">
                 {
-                    chats.map(chat => (
+                    chats && chats.map(chat => (
                         <SidebarChat key={chat.id} chat={chat} />
                     ))
                 }

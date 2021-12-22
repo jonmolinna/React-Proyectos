@@ -1,3 +1,6 @@
 export const TYPES = {
-    USER_LOGIN: "USER_LOGIN",
+    LOGIN: 'LOGIN',
+    LOGOUT: 'LOGOUT',
+    GROUP_CHAT: 'GROUP_CHAT', 
+    GROUP_CHAT_NULL: 'GROUP_CHAT_NULL',
 };
