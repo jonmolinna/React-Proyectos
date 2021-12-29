@@ -22,19 +22,19 @@ export class User {
     uuid: string;
 
     @Column()
-    @IsNotEmpty()
-    @MinLength(5)
+    @IsNotEmpty({message: 'El usuario no debe estar vacío'})
+    @MinLength(5, { message: 'El usuario debe tener 5 caracteres o más'})
     username: string;
 
     @Column()
-    @IsNotEmpty()
+    @IsNotEmpty( {message: 'El nombre no debe estar vacío'} )
     @IsString()
-    @MinLength(3)
+    @MinLength(3, { message: 'El nombre debe tener más de 3 caracteres o más'})
     name: string
 
     @Column()
-    @IsNotEmpty()
-    @MinLength(6)
+    @IsNotEmpty( {message: 'La contraseña no debe estar vacía'} )
+    @MinLength(6, { message: 'La contraseña debe tener más de 6 caracteres'} )
     password: string;
 
     @Column()

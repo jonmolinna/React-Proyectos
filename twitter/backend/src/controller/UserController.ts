@@ -24,11 +24,11 @@ export class UserController {
         }
 
         if (!name.match(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/)) {
-            return res.status(400).json({ message: 'Nombre solo acepta letras y espacios'});
+            return res.status(400).json({ message: 'Ingrese un nombre válido'});
         }
 
         if (!username.match(/^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/)) {
-            return res.status(400).json({ message: `${username} no es un username valido`});
+            return res.status(400).json({ message: `${username} es un usuario no válido`});
         }
 
         const userRepository = getRepository(User);
@@ -36,7 +36,7 @@ export class UserController {
             user.hashPassword();
             await userRepository.save(user);
         } catch (error) {
-            return res.status(400).json({ message: 'El username ya existe'});
+            return res.status(400).json({ message: 'El usuario ya existe'});
         }
 
         return res.status(201).json({ message : "Usuario creado"});

@@ -58,17 +58,14 @@
 
 .register_login {
   font-size: 15px;
-  margin-top: 30px;
+  margin-top: 20px;
   color: #636161;
 }
 
-@media screen and (min-width: 48em) {
-  .register {
-    padding-top: 10px;
-  }
-  .register_content {
-    max-height: 500px;
-    width: 500px;
-    border-radius: 10px;
-  }
+.register_error {
+  margin-top: -0.5rem;
+}
+
+.register_error li {
+  font-size: 13px;
 }

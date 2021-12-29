@@ -10,7 +10,7 @@ export class AuthController {
         const { username, password } = req.body;
 
         if(!(username && password)) {
-            return res.status(400).json({ message: 'Se requiere username y contraseña'});
+            return res.status(400).json({ message: 'Ingrese usuario y contraseña'});
         };
 
         const userRepository = getRepository(User);
@@ -19,12 +19,12 @@ export class AuthController {
         try {
             user = await userRepository.findOneOrFail({ where: {username}});
         } catch (error) {
-            return res.status(400).json({ message: 'Username o Contraseña son incorrectos.'})
+            return res.status(400).json({ message: 'Credenciales no válidas'})
         }
 
         // Verificar la contraseña
         if (!user.checkPassword(password)) {
-            return res.status(400).json({ message: 'Username o Contraseña son incorrectos.'})
+            return res.status(400).json({ message: 'Credenciales no válidas'})
         }
 
         // Creando Token
