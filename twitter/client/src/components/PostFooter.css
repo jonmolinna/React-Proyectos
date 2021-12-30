@@ -1,0 +1,13 @@
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.postFooter_button svg {
+  color: #817e7e;
+}
+
+.postFooter__count {
+  font-size: 14px;
+  color: #817e7e;
+}

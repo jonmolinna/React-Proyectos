@@ -1,0 +1,63 @@
+.twitter {
+  display: flex;
+  height: 100vh;
+}
+
+.twitter_left {
+  flex: 0.17;
+}
+
+.twitter_center {
+  flex: 0.83;
+  overflow: scroll;
+}
+
+/* Hide scrollbar for chrome, safari and opera */
+.twitter_center::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, edge and firefox */
+.twitter_center {
+  -ms-overflow-style: none; /* IE and Edge*/
+  scrollbar-width: none; /* firefox*/
+}
+
+.twitter_right {
+  display: none;
+}
+
+@media screen and (min-width: 48em) {
+  .twitter_left {
+    flex: 0.1;
+  }
+
+  .twitter_center {
+    flex: 0.6;
+  }
+
+  .twitter_right {
+    flex: 0.3;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 64em) {
+  .twitter {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .twitter_left {
+    flex: 0.2;
+  }
+
+  .twitter_center {
+    flex: 0.5;
+  }
+
+  .twitter_right {
+    flex: 0.3;
+  }
+}

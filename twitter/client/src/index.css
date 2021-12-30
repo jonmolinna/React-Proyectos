@@ -1,7 +1,8 @@
 :root {
   --bg-color-gray: #242d34;
   --bg-color-dark: #000000;
-  --twitter-color: #13669e;
+  --twitter-color: #1565c0;
+  --border-color: #363636;
 }
 
 html {
@@ -19,7 +20,7 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--bg-color-gray);
+  background-color: var(--bg-color-dark);
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
@@ -28,6 +29,10 @@ body {
 a {
   text-decoration: none;
   color: var(--twitter-color);
+}
+
+img {
+  width: 100%;
 }
 
 @media screen and (min-width: 48em) {

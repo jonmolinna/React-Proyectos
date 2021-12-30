@@ -1,0 +1,48 @@
+.follow {
+  height: 100vh;
+  width: 100%;
+  border-left: 1px solid var(--border-color);
+  padding: 25px 2px 0 5px;
+}
+
+.follow_card {
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  background-color: var(--bg-color-gray);
+  padding: 0 7px;
+}
+
+.follow_card h2 {
+  font-size: 15px;
+}
+
+.follow_user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.follow_username {
+  flex: 1;
+  margin-left: 1ch;
+  width: 100px;
+}
+
+.follow_username h4,
+p {
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.follow_username p {
+  margin-top: -10px;
+}
+
+.follow_user button {
+  color: black;
+  text-transform: capitalize;
+  background-color: #d7dbdc;
+  border-radius: 30px;
+}
