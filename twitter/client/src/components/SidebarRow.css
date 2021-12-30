@@ -3,8 +3,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
+
+.sidebarRow:hover {
+  background-color: #272727;
+  border-radius: 40px;
+}
+
 .sidebarRow_title {
   display: none;
 }
@@ -16,6 +23,11 @@
   .sidebarRow {
     justify-content: flex-start;
     margin-bottom: 3px;
+    padding: 0;
+  }
+
+  .sidebarRow svg {
+    margin-left: 9px;
   }
 
   .sidebarRow_title {

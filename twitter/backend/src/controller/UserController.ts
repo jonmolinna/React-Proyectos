@@ -1,4 +1,4 @@
-import { getRepository } from 'typeorm';
+import { getRepository, Not } from 'typeorm';
 import { Request, Response } from 'express';
 import { User } from '../entity/User';
 import { validate } from 'class-validator';
@@ -41,4 +41,39 @@ export class UserController {
 
         return res.status(201).json({ message : "Usuario creado"});
     };
+
+    static getUsers = async (req: Request, res: Response) => {
+        const userRepository = getRepository(User);
+        const { userId } = res.locals.jwtPayload;
+        let users;
+
+        try {
+            users = await userRepository.find({
+                order: {
+                    createdAt: "DESC",
+                },
+                where: { uuid: Not(userId)},
+                skip: 0,
+                take: 3,
+            });    
+        } catch (e) {
+            res.status(404).json({ message: 'Algo salio mal' });
+        }
+
+        if (users.length > 0 ){
+            const newUsers = [];
+            for (let i=0; i < users.length; i++) {
+                let user = {
+                    uuid: users[i].uuid,
+                    username: users[i].username,
+                    name: users[i].name,
+                }
+
+                newUsers.push(user)
+            };
+            return res.status(201).json({ users : newUsers });
+        } else  {
+            res.status(404).json({ message: 'No resultado' });
+        }
+    }
 };

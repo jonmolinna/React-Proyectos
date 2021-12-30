@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { Link, useHistory } from 'react-router-dom';
 
 import axios from '../util/axios';
+import { useAuthDispatch } from '../context/auth';
 
 const initialForm = {
     username: "",
@@ -14,6 +15,7 @@ const initialForm = {
 const Login = () => {
     const [form, setForm] = useState(initialForm);
     let history = useHistory();
+    const dispatch = useAuthDispatch();
 
     const handleChange = (e) => {
         setForm({
@@ -37,7 +39,11 @@ const Login = () => {
                 })
             };
 
-            await axios('/auth', options);
+            const res = await axios('/auth', options);
+            dispatch({
+                type: 'LOGIN',
+                payload: res.data,
+            });
             setForm(initialForm);
             history.push("/")
         } catch (e) {

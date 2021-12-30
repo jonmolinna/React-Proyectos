@@ -28,7 +28,12 @@ export class AuthController {
         }
 
         // Creando Token
-        const token = jwt.sign({ userId: user.uuid, username: user.username}, config.jwtSecret, { expiresIn: '1h'});
-        res.status(200).json({ token })
+        const token = jwt.sign({ userId: user.uuid, username: user.username, name: user.name}, config.jwtSecret, { expiresIn: '1h'});
+        res.status(200).json({ 
+            userId: user.uuid,
+            username: user.username,
+            name: user.name,
+            token 
+        })
     };
 };

@@ -5,6 +5,18 @@
 
 .twitter_left {
   flex: 0.17;
+  overflow: scroll;
+}
+
+/* Hide scrollbar for chrome, safari and opera */
+.twitter_left::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, edge and firefox */
+.twitter_left {
+  -ms-overflow-style: none; /* IE and Edge*/
+  scrollbar-width: none; /* firefox*/
 }
 
 .twitter_center {
