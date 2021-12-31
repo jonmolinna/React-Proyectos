@@ -1,0 +1,30 @@
+.postInput {
+  margin-left: 2ch;
+  flex: 1;
+}
+
+.postInput textarea {
+  color: #f4f4f4;
+}
+
+.postInput_botons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postInput_btnRight button {
+  border-radius: 50px;
+  text-transform: capitalize;
+}
+
+.postInput_btnRight button:disabled {
+  background-color: #0e4d78;
+  color: #62727d;
+}
+
+@media screen and (min-width: 48em) {
+}
+
+@media screen and (min-width: 64em) {
+}

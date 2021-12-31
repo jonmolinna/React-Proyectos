@@ -6,10 +6,13 @@ import {
     UpdateDateColumn,
     Unique,
     BeforeInsert,
+    OneToMany,
 } from "typeorm";
 import { IsNotEmpty, IsString, MinLength } from "class-validator";
 import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcryptjs';
+
+import { Post } from './Posts';
 
 @Entity()
 @Unique(['username'])
@@ -44,6 +47,9 @@ export class User {
     @Column()
     @UpdateDateColumn()
     updateAt: Date;
+
+    @OneToMany(() => Post, post => post.id)
+    posts: Post[];
 
     @BeforeInsert()
         createUuid() {

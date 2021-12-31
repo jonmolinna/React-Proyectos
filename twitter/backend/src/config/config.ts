@@ -1,3 +1,8 @@
+import { keys } from './keys';
+
 export default {
     jwtSecret: 'ULTRA_SECRET_JWT_1234',
+    CLOUDINARY_CLOUD_NAME: keys.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: keys.CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET: keys.CLOUDINARY_API_SECRET,
 };

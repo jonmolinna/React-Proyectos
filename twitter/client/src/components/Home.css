@@ -19,30 +19,6 @@
   display: flex;
 }
 
-.home_input {
-  margin-left: 2ch;
-  flex: 1;
-}
-
-.home_input textarea {
-  color: #f4f4f4;
-}
-
-.home_botons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.home_btnleft svg {
-  color: var(--twitter-color);
-}
-
-.home_btnleft button {
-  border-radius: 50px;
-  text-transform: capitalize;
-}
-
 @media screen and (min-width: 48em) {
 }
 

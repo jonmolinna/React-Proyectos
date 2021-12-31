@@ -10,6 +10,8 @@ npm install jsonwebtoken
 npm install bcryptjs
 npm install class-validator
 npm install uuid
+npm install multer
+npm install cloudinary
 
 npm install ts-node-dev -D
 npm install typescript -D
@@ -19,6 +21,7 @@ npm install @types/jsonwebtoken -D
 npm install @types/express -D
 npm install @types/node -D
 npm install nodemon -D
+npm i --save-dev @types/multer
 
 
 

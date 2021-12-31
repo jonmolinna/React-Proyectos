@@ -14,8 +14,8 @@ export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
         return res.status(401).json({ message: 'No tienes autorización' })
     }
 
-    const { userId, username, name} = jwtPayload;
-    const newToken = jwt.sign({ userId, username, name }, config.jwtSecret, { expiresIn: '1h' });
+    const { id, userId, username, name} = jwtPayload;
+    const newToken = jwt.sign({ id, userId, username, name }, config.jwtSecret, { expiresIn: '1h' });
     res.setHeader('token', newToken);
     // call next
     next();

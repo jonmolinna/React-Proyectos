@@ -1,14 +1,17 @@
 import React from 'react';
 import './Home.css';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import { Avatar, IconButton, Button } from '@mui/material';
-import TextField from '@mui/material/TextField';
-import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
-import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
-import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import { Avatar } from '@mui/material';
 import Post from './Post';
+import PostInput from './PostInput';
+import { blueGrey } from '@mui/material/colors';
+
+import { useAuthState } from '../context/auth';
+import { chatAt } from '../util/chatAt';
 
 const Home = () => {
+    const { user } = useAuthState();
+
     return (
         <div className='home'>
             <article className='home_header'>
@@ -17,34 +20,8 @@ const Home = () => {
             </article>
             <article className='home_body'>
                 <aside className='home_bodyHeader'>
-                    <Avatar />
-                    <div className='home_input'>
-                        <TextField 
-                            multiline
-                            rows={4}
-                            variant="standard"
-                            placeholder="What's happening?"
-                            fullWidth 
-                        />
-                        <div className='home_botons'>
-                            <aside className='home_btnleft'>
-                                <IconButton>
-                                    <ImageOutlinedIcon />
-                                </IconButton>
-                                <IconButton>
-                                    <EmojiEmotionsOutlinedIcon />
-                                </IconButton>
-                                <IconButton>
-                                    <CalendarTodayOutlinedIcon />
-                                </IconButton>
-                            </aside>
-                            <aside className='home_btnleft'>
-                                <Button variant="contained">
-                                    Tweet
-                                </Button>
-                            </aside>
-                        </div>
-                    </div>
+                    <Avatar sx={{ bgcolor: blueGrey[700] }}>{chatAt(user.name)}</Avatar>
+                    <PostInput />
                 </aside>
                 <aside className='home_posts'>
                     <Post />

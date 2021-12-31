@@ -1,0 +1,25 @@
+.postModal_btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postModal_btns svg {
+  color: var(--twitter-color);
+}
+
+.postModal_file {
+  position: relative;
+  color: var(--twitter-color);
+  margin-top: 10px;
+}
+
+.postModal_file input {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+.postModal_img {
+  width: 300px;
+}
