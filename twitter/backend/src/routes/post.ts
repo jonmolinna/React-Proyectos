@@ -9,5 +9,6 @@ const router = Router();
 
 // Add Post
 router.post('/', [checkJwt, upload, validationImg], PostController.addPost);
+router.get('/', [checkJwt], PostController.getPosts);
 
 export default router;

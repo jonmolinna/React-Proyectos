@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { Avatar } from '@mui/material';
@@ -8,9 +8,34 @@ import { blueGrey } from '@mui/material/colors';
 
 import { useAuthState } from '../context/auth';
 import { chatAt } from '../util/chatAt';
+import axios from '../util/axios';
 
 const Home = () => {
     const { user } = useAuthState();
+    const [post, setPost] = useState([]);
+    const token = localStorage.getItem('tokenTwitterclone');
+
+    useEffect(() => {
+        const getPosts = async () => {
+            try {
+                let options = {
+                    method: "GET",
+                    headers: {
+                        "Content-type" : "application/json; charset=utf-8",
+                        "authorization": `${token? token : null}`,
+                    },
+                };
+                const res = await axios('/post', options);
+                setPost(res.data.posts)
+                console.log(res);
+            } catch (err) {
+                console.log('err', err.response);
+            }
+        };
+        getPosts();
+    }, []);
+
+    console.log('HOME')
 
     return (
         <div className='home'>
@@ -24,14 +49,11 @@ const Home = () => {
                     <PostInput />
                 </aside>
                 <aside className='home_posts'>
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
+                    {
+                        post && post.map(post => (
+                            <Post key={post.uuid} post={post} />
+                        ))
+                    }
                 </aside>
             </article>
         </div>

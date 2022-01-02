@@ -4,9 +4,11 @@ Column,
 CreateDateColumn,
 Entity,
 ManyToOne,
+OneToMany,
 PrimaryGeneratedColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Likes } from './Like';
 import { User } from './User';
 
 @Entity()
@@ -27,8 +29,11 @@ export class Post {
     @CreateDateColumn({ name: 'created_at'})
     createdAt: Date;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, user => user.posts)
     user: User;
+
+    @OneToMany(() => Likes, like => like.id)
+    likes: Likes[];
 
     @BeforeInsert()
     createUuid(){

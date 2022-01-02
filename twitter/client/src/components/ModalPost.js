@@ -40,6 +40,7 @@ const ModalPost = ({ isOpen, closeModalPost }) => {
             setSelectedFile(reader.result);
         }
         reader.readAsDataURL(file);
+        e.target.value = '';
     }
 
     const addPost = async () => {

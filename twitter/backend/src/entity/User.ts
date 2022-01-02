@@ -13,6 +13,7 @@ import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcryptjs';
 
 import { Post } from './Posts';
+import { Likes } from "./Like";
 
 @Entity()
 @Unique(['username'])
@@ -50,6 +51,9 @@ export class User {
 
     @OneToMany(() => Post, post => post.id)
     posts: Post[];
+
+    @OneToMany(() => Likes, like => like.id)
+    likes: Likes[];
 
     @BeforeInsert()
         createUuid() {
