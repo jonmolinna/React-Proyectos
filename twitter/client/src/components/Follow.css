@@ -28,8 +28,8 @@
   width: 100px;
 }
 
-.follow_username h4,
-p {
+.follow_username > h4,
+.follow_username > p {
   font-size: 13px;
   overflow: hidden;
   white-space: nowrap;

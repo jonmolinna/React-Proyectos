@@ -14,6 +14,7 @@ import * as bcrypt from 'bcryptjs';
 
 import { Post } from './Posts';
 import { Likes } from "./Like";
+import { Comments } from "./Comment";
 
 @Entity()
 @Unique(['username'])
@@ -54,6 +55,9 @@ export class User {
 
     @OneToMany(() => Likes, like => like.id)
     likes: Likes[];
+
+    @OneToMany(() => Comments, comment => comment.id)
+    comments: Comments[];
 
     @BeforeInsert()
         createUuid() {

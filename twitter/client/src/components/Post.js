@@ -10,9 +10,7 @@ import { chatAt } from '../util/chatAt';
 import { Capitalize } from '../util/capitalize';
 
 const Post = ({ post }) => {
-
-    let fecha = moment(post.createdAt).subtract('hour').fromNow();
-    console.log(fecha)
+    let fecha = moment(post.createdAt).subtract('hour').fromNow(true);
 
     return (
         <div className='post'>
@@ -45,7 +43,7 @@ const Post = ({ post }) => {
                     )
                 }
                 <aside className='post_footer'>
-                    <PostFooter />
+                    <PostFooter post={post} />
                 </aside>
             </article>
         </div>

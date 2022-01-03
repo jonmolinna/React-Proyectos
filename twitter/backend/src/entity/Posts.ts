@@ -8,6 +8,7 @@ OneToMany,
 PrimaryGeneratedColumn,
 } from 'typeorm';
 import { v4 as uuid } from 'uuid';
+import { Comments } from './Comment';
 import { Likes } from './Like';
 import { User } from './User';
 
@@ -34,6 +35,9 @@ export class Post {
 
     @OneToMany(() => Likes, like => like.id)
     likes: Likes[];
+
+    @OneToMany(() => Comments, comment => comment.id)
+    comments: Likes[];
 
     @BeforeInsert()
     createUuid(){

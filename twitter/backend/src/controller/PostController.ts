@@ -53,12 +53,13 @@ export class PostController {
 
             for (let i=0; i < posts.length; i++){
                 let post = {
+                    id: posts[i].id,
                     uuid: posts[i].uuid,
                     imagen: posts[i].imagen,
                     comment: posts[i].comment,
                     createdAt: posts[i].createdAt,
                     username: posts[i].user.username,
-                    name: posts[i].user.name
+                    name: posts[i].user.name,
                 }
                 newPosts.push(post)
             }
