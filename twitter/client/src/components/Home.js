@@ -27,15 +27,13 @@ const Home = () => {
                 };
                 const res = await axios('/post', options);
                 setPost(res.data.posts)
-                console.log(res);
+                // console.log(res);
             } catch (err) {
                 console.log('err', err.response);
             }
         };
         getPosts();
-    }, []);
-
-    console.log('HOME')
+    }, [token]);
 
     return (
         <div className='home'>

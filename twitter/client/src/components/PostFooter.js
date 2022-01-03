@@ -3,10 +3,10 @@ import './PostFooter.css';
 import { IconButton } from '@mui/material';
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import RepeatOutlinedIcon from '@mui/icons-material/RepeatOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import ModalComment from './ModalComment';
 import { toast } from 'react-hot-toast';
+import LikeButton from './LikeButton';
 
 import axios from '../util/axios';
 
@@ -14,6 +14,8 @@ const PostFooter = ({ post }) => {
     const [isOpenModalComment, setIsOpenModalComment] = useState(false);
     const [comments, setComments] = useState([]);
     const [countComments, setCountComments] = useState(0);
+    const [countLikes, setCountLikes] = useState(0);
+    const [likes, setLikes] = useState([]);
     const token = localStorage.getItem('tokenTwitterclone');
     let postId = post.id;
 
@@ -34,12 +36,34 @@ const PostFooter = ({ post }) => {
                 setComments(res.data.posts)
                 setCountComments(res.data.count)
             } catch (err) {
-                console.log('err', err.response);
+                // console.log('err', err.response);
                 toast.error(err.response.message);
             }
         }
 
         getPostById(postId);
+    }, [postId, token]);
+
+    useEffect(() => {
+        const getLikeByIdPost = async (postId) => {
+            try {
+                let options = {
+                    method: "GET",
+                    headers: {
+                        "Content-type" : "application/json; charset=utf-8",
+                        "authorization": `${token? token : null}`,
+                    },
+                };
+                const res = await axios(`/like?postId=${postId}`, options);
+                setCountLikes(res.data.count);
+                setLikes(res.data.message)
+            } catch (err) {
+                // console.log('err', err.response);
+                toast.error(err.response.message);
+            }
+        }
+
+        getLikeByIdPost(postId);
     }, [postId, token]);
 
     return (
@@ -57,10 +81,14 @@ const PostFooter = ({ post }) => {
                }
            </aside>
            <aside className='postFooter_button'>
-               <IconButton>
-                   <FavoriteBorderOutlinedIcon sx={{ fontSize: 15 }} />
-               </IconButton>
-               <span className='postFooter__count'>2</span>
+               <LikeButton postId={postId} likes={likes} />
+               {
+                   countLikes > 0 && (
+                    <span className='postFooter__count'>
+                        { countLikes }
+                    </span>
+                   )
+               }
            </aside>
            <aside className='postFooter_button'>
                <IconButton>

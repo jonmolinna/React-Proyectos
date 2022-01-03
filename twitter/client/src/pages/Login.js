@@ -50,9 +50,7 @@ const Login = () => {
             toast.error(e.response.data.message);
         }
     };
-
-    console.log('LOGIN')
-
+    
     return (
         <div className='login'>
             <div className='login_content'>
