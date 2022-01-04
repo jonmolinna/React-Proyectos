@@ -21,7 +21,8 @@
 
 .twitter_center {
   flex: 0.83;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 /* Hide scrollbar for chrome, safari and opera */

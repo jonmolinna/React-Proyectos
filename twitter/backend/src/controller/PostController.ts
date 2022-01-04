@@ -14,8 +14,8 @@ export class PostController {
             return res.status(400).json({ message: 'Ingrese un tweet o imagen' });
         }
 
-        if (comment.length > 240 ) {
-            return res.status(400).json({ message: 'Ingrese un tweet no mayor a 240 caracteres' });
+        if (comment.length >= 200 ) {
+            return res.status(400).json({ message: 'Ingrese un tweet no mayor a 200 caracteres' });
         }
 
         let result;
@@ -25,13 +25,14 @@ export class PostController {
 
         const post = new Post();
         post.comment = comment.trim();
-        post.imagen = result;
+        post.imagen = result? result.secure_url : null;
         post.user = id;
 
         const userRepository = getRepository(Post);
         try {
             await userRepository.save(post);
         } catch (err) {
+            // console.log('err', err)
             return res.status(400).json({ message: 'Algo salio mal' });
         }
 

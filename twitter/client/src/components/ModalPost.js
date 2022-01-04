@@ -8,6 +8,7 @@ import { IconButton, Button } from '@mui/material';
 import { toast } from 'react-hot-toast';
 
 import axios from '../util/axios';
+import Loading from './Loading';
 
 const style = {
     position: 'absolute',
@@ -16,9 +17,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     outerWidth: 400,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 2,
+    border: '1px solid #000',
 };
 
 const ModalPost = ({ isOpen, closeModalPost }) => {
@@ -44,6 +43,7 @@ const ModalPost = ({ isOpen, closeModalPost }) => {
     }
 
     const addPost = async () => {
+        setLoading(true);
         try {
             let formData = new FormData();
             formData.append('image', image);
@@ -64,6 +64,8 @@ const ModalPost = ({ isOpen, closeModalPost }) => {
         } catch (err) {
             toast.error(err.response.data.message);
             console.log('err', err.response)
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -99,10 +101,18 @@ const ModalPost = ({ isOpen, closeModalPost }) => {
                             variant="contained" 
                             size="small"
                             onClick={addPost}
+                            // disabled={!(comment.trim().length > 3 || image) ? false : true}
                         >
                             Tweet
                         </Button>
                     </div>
+                    {
+                        loading && (
+                            <div className='postModal_loading'>
+                                <Loading />
+                            </div>
+                        )
+                    }
                     <aside className='postModal_img'>
                         <img src={selectedFile} alt="" />
                     </aside>

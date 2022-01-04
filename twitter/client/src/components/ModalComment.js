@@ -41,7 +41,7 @@ const ModalComment = ({ isOpenModalComment, closeModalComment, comments, postId 
             const res = await axios(`comment?postId=${postId}`, options);
             setComment('');
             toast.success(res.data.message);
-            console.log(res)
+            // console.log(res)
         } catch (err) {
             toast.error(err.response.message);
         }
@@ -88,7 +88,7 @@ const ModalComment = ({ isOpenModalComment, closeModalComment, comments, postId 
                                     <div className='modalComment_right'>
                                         <div className="modalComment_user">
                                             <h3>{Capitalize(comment.name)}</h3>
-                                            <time>{moment(comment.createdAt).startOf('hour').fromNow(true)}</time>
+                                            <time>{moment(comment.createdAt).subtract('hour').fromNow(true)}</time>
                                         </div>
                                         <p>{comment.comment}</p>
                                     </div>
