@@ -24,13 +24,19 @@ function App() {
           }
         </Route>
         <Route path="/login">
-          <Login />
+          {
+            user? <Home /> : <Login />
+          }
         </Route>
         <Route path="/write">
-          <Write />
+          {
+            user? <Write /> : <Register />
+          }
         </Route>
         <Route path="/settings">
-          <Setting />
+          {
+            user? <Setting /> : <Register />
+          }
         </Route>
         <Route path="/post/:postId">
           <Single />
@@ -41,5 +47,3 @@ function App() {
 }
 
 export default App;
-
-// 1:36:36
