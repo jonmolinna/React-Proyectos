@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const bcrypt = require('bcrypt');
 
-const User = require('../models/User');
 const Post = require('../models/Post');
 
 // CREATE POST
@@ -98,5 +96,3 @@ router.get("/", async (req, res) => {
 });
 
 module.exports = router;
-
-// 1:05:00
