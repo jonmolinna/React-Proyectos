@@ -1,42 +1,39 @@
 import React from 'react';
 import './Post.css';
+import { Link } from 'react-router-dom';
 
-const Post = () => {
+const Post = ({ post }) => {
+    const PF = "http://localhost:9000/images/"; // para imagen
+
     return (
         <div className='post'>
-            <img
-                className='postImg'
-                src="https://res.cloudinary.com/dhdxq3mkm/image/upload/v1643903733/rlou1oguwhxhawlmoabm.png"
-                alt=""
-            />
+            {
+                post.photo && (
+                    <img
+                        className='postImg'
+                        src={PF + post.photo}
+                        alt=""
+                    />
+                )
+            }
             <div className='postInfo'>
                 <div className='postCats'>
-                    <span className='postCat'>Music</span>
-                    <span className='postCat'>Life</span>
+                    {
+                        post.categories.map((cate, index) => (
+                            <span className='postCat' key={index}>{cate.name}</span>
+                        ))
+                    }
                 </div>
-                <span className='postTitle'>
-                    Lorem ipsum dolor sit amet.
-                </span>
+                <Link to={`/post/${post._id}`} className="link">
+                    <span className='postTitle'>
+                        { post.title }
+                    </span>
+                </Link>
                 <hr />
-                <span className='postDate'>1 hora ago</span>
+                <span className='postDate'>{ new Date(post.createdAt).toDateString() }</span>
             </div>
             <p className='postDesc'>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Id explicabo natus eveniet at? Consequuntur a veritatis
-                nobis laborum nulla deserunt. Minus, quos ducimus.
-                Neque nesciunt dicta praesentium soluta illum molestias!
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Id explicabo natus eveniet at? Consequuntur a veritatis
-                nobis laborum nulla deserunt. Minus, quos ducimus.
-                Neque nesciunt dicta praesentium soluta illum molestias!
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Id explicabo natus eveniet at? Consequuntur a veritatis
-                nobis laborum nulla deserunt. Minus, quos ducimus.
-                Neque nesciunt dicta praesentium soluta illum molestias!
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Id explicabo natus eveniet at? Consequuntur a veritatis
-                nobis laborum nulla deserunt. Minus, quos ducimus.
-                Neque nesciunt dicta praesentium soluta illum molestias!
+                { post.desc }
             </p>
         </div>
     )

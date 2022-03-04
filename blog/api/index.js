@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const cors = require('cors');
+const path = require('path');
 
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
@@ -11,6 +13,10 @@ const categoryRoute = require('./routes/categories');
 const app = express();
 dotenv.config();
 
+// Archivo imgs
+app.use("/images", express.static(path.join(__dirname, "/images")));
+
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -26,7 +32,8 @@ const storage = multer.diskStorage({
     },
     // Nombre del archivo
     filename: (req, file, cb) => {
-        cb(null, "deya.jpg");
+        // cb(null, "deya.jpg");
+        cb(null, req.body.name)
     },
 });
 
